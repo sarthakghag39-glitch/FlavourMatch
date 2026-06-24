@@ -1,0 +1,488 @@
+<!DOCTYPE html><html class="scroll-smooth bg-[#f7f9fb]" lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlavourMatch | Premium Restaurant Discovery &amp; Recommendation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#1a1c1e",
+                        "secondary-container": "#e2e2e5",
+                        "error-container": "#ffdad6",
+                        "background": "#f7f9fb",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#636467",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c6c6c9",
+                        "primary-container": "#da3527",
+                        "outline": "#906f6b",
+                        "on-background": "#191c1e",
+                        "on-primary-fixed-variant": "#930002",
+                        "surface-container": "#eceef0",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-tertiary-container": "#fdfcff",
+                        "on-surface": "#191c1e",
+                        "surface-container-high": "#e6e8ea",
+                        "primary-fixed-dim": "#ffb4a9",
+                        "surface": "#f7f9fb",
+                        "tertiary-container": "#66768d",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary": "#4d5d73",
+                        "on-surface-variant": "#5b403c",
+                        "primary": "#b61810",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "surface-bright": "#f7f9fb",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-fixed": "#e2e2e5",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#d8dadc",
+                        "tertiary-fixed": "#d3e4fe",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary-fixed-variant": "#454749",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed": "#ffdad5",
+                        "outline-variant": "#e4beb8",
+                        "on-primary-fixed": "#410000",
+                        "secondary": "#5d5e61",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#fffbff",
+                        "surface-tint": "#ba1b12",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#ffb4a9",
+                        "on-tertiary-fixed": "#0b1c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "12px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "stack-md": "24px",
+                        "stack-lg": "48px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Montserrat"],
+                        "headline-sm": ["Montserrat"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "display-lg-mobile": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden min-h-screen relative w-full">
+<!-- TopAppBar Shell -->
+<header class="bg-surface/80 backdrop-blur-md shadow-sm docked full-width top-0 sticky flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full z-50 transition-all duration-300 h-16">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-high transition-colors duration-200 p-2 rounded-full active:scale-95 hidden items-center justify-center h-10 w-10">menu</button>
+<a href="index.html" class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings:'FILL' 1;">restaurant</span>
+<span class="text-headline-md text-primary tracking-tight">FlavourMatch</span>
+</a>
+</div>
+<!-- Desktop Nav Center -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold text-label-md font-label-md" href="index.html">Home</a>
+<a class="text-secondary text-label-md font-label-md hover:text-primary transition-colors duration-200" href="discover.html">Discover</a>
+<a class="text-secondary text-label-md font-label-md hover:text-primary transition-colors duration-200" href="compare.html">Compare</a>
+</nav>
+
+</header>
+<main class="min-h-screen">
+<!-- Hero Section -->
+<section class="relative w-full py-20 lg:py-28 px-margin-mobile md:px-margin-desktop overflow-hidden bg-gradient-to-br from-[#fffdfa] via-white to-[#fbf7f4] border-b border-outline-variant/10 z-10">
+  <!-- Subtle food-related background line SVGs -->
+  <div class="absolute inset-0 pointer-events-none opacity-20 z-0">
+    <!-- Heart outline -->
+    <svg class="absolute top-[15%] left-[8%] text-[#da3527] w-6 h-6 animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+    </svg>
+    <!-- Heart outline 2 -->
+    <svg class="absolute top-[35%] right-[42%] text-[#da3527] w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+    </svg>
+    <!-- Chef Hat -->
+    <svg class="absolute bottom-[20%] left-[45%] text-slate-400 w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M6 18c0-3 1.5-4 3-4h6c1.5 0 3 1 3 4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2zM9 14c-1.5 0-3-1.5-3-3.5C6 8 8 6 12 6s6 2 6 4.5c0 2-1.5 3.5-3 3.5" />
+    </svg>
+    <!-- Cloche -->
+    <svg class="absolute top-[25%] right-[5%] text-slate-400 w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M3 18h18M5 18a7 7 0 0 1 14 0M12 4v3M11 4h2" stroke-linecap="round" />
+    </svg>
+  </div>
+
+  <div class="relative z-10 max-w-container-max mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+    <!-- Left Column: Copy & Actions -->
+    <div class="lg:col-span-7 flex flex-col items-start gap-6">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 bg-[#da3527]/5 border border-[#da3527]/10 px-4 py-2 rounded-full">
+        <span class="material-symbols-outlined text-[#da3527] text-sm font-bold" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+        <span class="text-[#da3527] font-bold text-[10px] sm:text-xs uppercase tracking-widest">Next-Gen Culinary Discovery</span>
+      </div>
+      <!-- Headline -->
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
+        Find Your Perfect <br class="hidden sm:inline"><span class="text-[#da3527]">Restaurant</span>
+      </h1>
+      <!-- Description -->
+      <p class="text-base sm:text-lg text-slate-500 max-w-xl leading-relaxed">
+        Discover restaurants based on cuisine, location, budget, ratings, and dining preferences. AI-powered recommendations made just for you.
+      </p>
+      <!-- Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 mt-2 w-full sm:w-auto">
+        <a href="discover.html" class="inline-flex items-center justify-center gap-2 bg-[#da3527] text-white hover:bg-[#b61810] hover:shadow-[0_8px_25px_rgba(218,53,39,0.25)] hover:-translate-y-0.5 active:translate-y-0 active:scale-95 px-8 py-4 rounded-xl font-bold transition-all duration-200 w-full sm:w-auto text-base">
+          <span class="material-symbols-outlined text-xl">explore</span>
+          Discover Restaurants
+        </a>
+        <a href="compare.html" class="inline-flex items-center justify-center gap-2 bg-white border border-[#da3527]/20 text-[#da3527] hover:bg-red-50/30 hover:border-[#da3527]/30 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-95 px-8 py-4 rounded-xl font-bold transition-all duration-200 w-full sm:w-auto text-base">
+          <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+          Compare Restaurants
+        </a>
+      </div>
+
+      <!-- Small features list -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10 w-full border-t border-slate-100 pt-8">
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-xl bg-[#da3527]/5 flex items-center justify-center flex-shrink-0 text-[#da3527]">
+            <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+          </div>
+          <div>
+            <h4 class="text-xs font-extrabold text-slate-800 uppercase tracking-wider">AI-Powered</h4>
+            <p class="text-[11px] text-slate-400 mt-0.5 leading-snug">Smart recommendations that learn your taste</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-xl bg-[#da3527]/5 flex items-center justify-center flex-shrink-0 text-[#da3527]">
+            <span class="material-symbols-outlined text-lg">location_on</span>
+          </div>
+          <div>
+            <h4 class="text-xs font-extrabold text-slate-800 uppercase tracking-wider">Local &amp; Verified</h4>
+            <p class="text-[11px] text-slate-400 mt-0.5 leading-snug">Curated local restaurants you can trust</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-xl bg-[#da3527]/5 flex items-center justify-center flex-shrink-0 text-[#da3527]">
+            <span class="material-symbols-outlined text-lg">payments</span>
+          </div>
+          <div>
+            <h4 class="text-xs font-extrabold text-slate-800 uppercase tracking-wider">Budget Friendly</h4>
+            <p class="text-[11px] text-slate-400 mt-0.5 leading-snug">Find the best options that fit your budget</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: AI Stacked Floating Cards -->
+    <div class="lg:col-span-5 relative w-full h-[520px] flex items-center justify-center lg:justify-end mt-8 lg:mt-0 z-10">
+      <!-- Dotted curve connecting the cards in background -->
+      <svg class="absolute inset-0 w-full h-full text-[#da3527]/5 pointer-events-none z-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="6 6">
+        <path d="M 50 150 C 120 180, 180 120, 250 220 S 300 350, 420 300" stroke-linecap="round"/>
+      </svg>
+
+      <!-- Card 1: Spice Garden (Top Right) -->
+      <div class="absolute top-[20px] right-2 sm:right-6 w-[270px] bg-white rounded-[24px] p-3 pb-20 shadow-[0_15px_35px_rgba(0,0,0,0.04)] border border-slate-100/60 rotate-[4deg] transition-all duration-300 hover:rotate-0 hover:scale-105 hover:shadow-[0_20px_45px_rgba(0,0,0,0.08)] z-20">
+        <div class="w-full h-32 rounded-[18px] overflow-hidden bg-slate-100">
+          <img src="images/food_image_4.jpg" class="w-full h-full object-cover" alt="Spice Garden">
+        </div>
+        <!-- Details Box -->
+        <div class="absolute bottom-3 left-5 w-[190px] bg-white rounded-[20px] p-3.5 shadow-lg border border-slate-50 flex flex-col gap-0.5 z-10">
+          <div class="flex justify-between items-center mb-0.5">
+            <span class="font-bold text-slate-800 text-[13px] leading-tight truncate">Spice Garden</span>
+            <span class="inline-flex items-center gap-0.5 bg-emerald-50 text-emerald-600 text-[9px] font-bold px-1.5 py-0.5 rounded flex-shrink-0">
+              ★ 4.8
+            </span>
+          </div>
+          <span class="text-[9px] text-slate-400">Koramangala, Bengaluru</span>
+          <span class="text-[10px] text-slate-500 font-medium">₹800 for two</span>
+          <span class="text-[9px] text-slate-400 mt-0.5 truncate">North Indian, Biryani</span>
+        </div>
+        <!-- Heart Button -->
+        <button class="absolute bottom-4 right-4 text-slate-300 hover:text-red-500 transition-colors z-20">
+          <span class="material-symbols-outlined text-[20px]">favorite</span>
+        </button>
+      </div>
+
+      <!-- Card 2: Urban Bites (Middle Left) -->
+      <div class="absolute top-[170px] left-0 sm:left-4 w-[270px] bg-white rounded-[24px] p-3 pb-20 shadow-[0_15px_35px_rgba(0,0,0,0.04)] border border-slate-100/60 rotate-[-3deg] transition-all duration-300 hover:rotate-0 hover:scale-105 hover:shadow-[0_20px_45px_rgba(0,0,0,0.08)] z-10">
+        <div class="w-full h-32 rounded-[18px] overflow-hidden bg-slate-100">
+          <img src="images/food_image_3.jpg" class="w-full h-full object-cover" alt="Urban Bites">
+        </div>
+        <!-- Details Box -->
+        <div class="absolute bottom-3 left-5 w-[190px] bg-white rounded-[20px] p-3.5 shadow-lg border border-slate-50 flex flex-col gap-0.5 z-10">
+          <div class="flex justify-between items-center mb-0.5">
+            <span class="font-bold text-slate-800 text-[13px] leading-tight truncate">Urban Bites</span>
+            <span class="inline-flex items-center gap-0.5 bg-emerald-50 text-emerald-600 text-[9px] font-bold px-1.5 py-0.5 rounded flex-shrink-0">
+              ★ 4.6
+            </span>
+          </div>
+          <span class="text-[9px] text-slate-400">Bandra, Mumbai</span>
+          <span class="text-[10px] text-slate-500 font-medium">₹900 for two</span>
+          <span class="text-[9px] text-slate-400 mt-0.5 truncate">Cafe, Continental, Italian</span>
+        </div>
+        <!-- Heart Button -->
+        <button class="absolute bottom-4 right-4 text-slate-300 hover:text-red-500 transition-colors z-20">
+          <span class="material-symbols-outlined text-[20px]">favorite</span>
+        </button>
+      </div>
+
+      <!-- Card 3: The Coastal House (Bottom Right) -->
+      <div class="absolute top-[310px] right-0 sm:right-10 w-[270px] bg-white rounded-[24px] p-3 pb-20 shadow-[0_15px_35px_rgba(0,0,0,0.04)] border border-slate-100/60 rotate-[2deg] transition-all duration-300 hover:rotate-0 hover:scale-105 hover:shadow-[0_20px_45px_rgba(0,0,0,0.08)] z-20">
+        <div class="w-full h-32 rounded-[18px] overflow-hidden bg-slate-100">
+          <img src="images/food_image_5.jpg" class="w-full h-full object-cover" alt="The Coastal House">
+        </div>
+        <!-- Details Box -->
+        <div class="absolute bottom-3 left-5 w-[190px] bg-white rounded-[20px] p-3.5 shadow-lg border border-slate-50 flex flex-col gap-0.5 z-10">
+          <div class="flex justify-between items-center mb-0.5">
+            <span class="font-bold text-slate-800 text-[13px] leading-tight truncate">The Coastal House</span>
+            <span class="inline-flex items-center gap-0.5 bg-emerald-50 text-emerald-600 text-[9px] font-bold px-1.5 py-0.5 rounded flex-shrink-0">
+              ★ 4.7
+            </span>
+          </div>
+          <span class="text-[9px] text-slate-400">Juhu, Mumbai</span>
+          <span class="text-[10px] text-slate-500 font-medium">₹1200 for two</span>
+          <span class="text-[9px] text-slate-400 mt-0.5 truncate">Seafood, Continental</span>
+        </div>
+        <!-- Heart Button -->
+        <button class="absolute bottom-4 right-4 text-slate-300 hover:text-red-500 transition-colors z-20">
+          <span class="material-symbols-outlined text-[20px]">favorite</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Statistics Section -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto -mt-8 relative z-30 mb-16">
+  <div class="bg-white rounded-[24px] p-6 shadow-[0_15px_40px_rgba(0,0,0,0.03)] border border-slate-100/80 grid grid-cols-2 md:grid-cols-4 gap-6 divide-y md:divide-y-0 md:divide-x divide-slate-100">
+    <!-- Stat 1 -->
+    <div class="flex items-center gap-4 p-2 md:p-4">
+      <div class="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center text-[#da3527] flex-shrink-0">
+        <span class="material-symbols-outlined text-2xl">storefront</span>
+      </div>
+      <div>
+        <div class="text-xl md:text-2xl font-bold text-slate-800 leading-none">29K+</div>
+        <div class="text-xs text-slate-400 mt-1.5 font-medium">Restaurants</div>
+      </div>
+    </div>
+    <!-- Stat 2 -->
+    <div class="flex items-center gap-4 p-2 md:p-4 pt-6 md:pt-4">
+      <div class="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center text-amber-500 flex-shrink-0">
+        <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">star</span>
+      </div>
+      <div>
+        <div class="text-xl md:text-2xl font-bold text-slate-800 leading-none">4.6+</div>
+        <div class="text-xs text-slate-400 mt-1.5 font-medium">Average Rating</div>
+      </div>
+    </div>
+    <!-- Stat 3 -->
+    <div class="flex items-center gap-4 p-2 md:p-4 pt-6 md:pt-4">
+      <div class="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 flex-shrink-0">
+        <span class="material-symbols-outlined text-2xl">location_on</span>
+      </div>
+      <div>
+        <div class="text-xl md:text-2xl font-bold text-slate-800 leading-none">3</div>
+        <div class="text-xs text-slate-400 mt-1.5 font-medium">Cities Covered</div>
+      </div>
+    </div>
+    <!-- Stat 4 -->
+    <div class="flex items-center gap-4 p-2 md:p-4 pt-6 md:pt-4">
+      <div class="w-12 h-12 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 flex-shrink-0">
+        <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+      </div>
+      <div>
+        <div class="text-xl md:text-2xl font-bold text-slate-800 leading-none">AI-Powered</div>
+        <div class="text-xs text-slate-400 mt-1.5 font-medium">Recommendations</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Trending Restaurants (Horizontal Scroll) -->
+<section class="py-stack-lg bg-surface-container-low/30">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-stack-md flex justify-between items-end">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Trending Restaurants</h2>
+<p class="font-body-md text-body-md text-secondary">The most popular tables in your area this week.</p>
+</div>
+<a class="text-primary font-label-md text-label-md flex items-center gap-1 hover:underline" href="discover.html">
+                    View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="flex overflow-x-auto hide-scrollbar gap-gutter px-margin-mobile md:px-margin-desktop pb-8">
+<!-- Card 1 -->
+<div class="min-w-[300px] md:min-w-[400px] glass-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+<div class="h-64 bg-cover bg-center" data-alt="A busy, vibrant shot of a popular grill restaurant, showcasing signature items and bustling atmosphere. The lighting is warm and energetic." style="background-image: url('images/food_image_3.jpg')"></div>
+<div class="p-stack-md">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline-sm text-headline-sm"><a href="details.html?name=Urban%20Bites" class="hover:text-primary transition-colors">Urban Bites</a></h4>
+<span class="bg-secondary-container/50 text-on-secondary-container px-3 py-1 rounded-full font-label-md text-label-md">₹900 for two</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mb-4 line-clamp-2">A premium casual dining hotspot known for its gourmet grill selections and vibrant setup.</p>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">4.5</span>
+<span class="text-secondary font-normal ml-2">(12.5k reviews) • Bandra, Mumbai</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="min-w-[300px] md:min-w-[400px] glass-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+<div class="h-64 bg-cover bg-center" data-alt="A vibrant, mouth-watering close-up of a signature spice dish. The image captures the steam, spices, and rich textures. The mood is authentic and highly appetizing." style="background-image: url('images/food_image_4.jpg')"></div>
+<div class="p-stack-md">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline-sm text-headline-sm"><a href="details.html?name=Spice%20Garden" class="hover:text-primary transition-colors">Spice Garden</a></h4>
+<span class="bg-secondary-container/50 text-on-secondary-container px-3 py-1 rounded-full font-label-md text-label-md">₹800 for two</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mb-4 line-clamp-2">Renowned for its authentic fiery recipes and traditional clay pot biryanis.</p>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">4.8</span>
+<span class="text-secondary font-normal ml-2">(8.2k reviews) • Koramangala, Bengaluru</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="min-w-[300px] md:min-w-[400px] glass-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+<div class="h-64 bg-cover bg-center" data-alt="A chic, sophisticated cocktail bar with botanical accents and high-end design. The lighting is moody and elegant, appealing to a trendy urban crowd." style="background-image: url('images/food_image_5.jpg')"></div>
+<div class="p-stack-md">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline-sm text-headline-sm"><a href="details.html?name=The%20Rooftop%20Lounge" class="hover:text-primary transition-colors">The Rooftop Lounge</a></h4>
+<span class="bg-secondary-container/50 text-on-secondary-container px-3 py-1 rounded-full font-label-md text-label-md">₹1,800 for two</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mb-4 line-clamp-2">Contemporary global cuisine with one of the city's most stunning open-air rooftop views.</p>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">4.9</span>
+<span class="text-secondary font-normal ml-2">(1.2k reviews) • Kothrud, Pune</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Popular Cuisines & Cities -->
+<section class="py-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-stack-lg">
+<!-- Popular Cuisines -->
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-md">Trending Cuisines</h2>
+<div class="flex flex-wrap gap-3">
+<button class="px-6 py-3 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md hover:bg-primary-container hover:text-white transition-all duration-200">South Indian</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md hover:bg-primary-container hover:text-white transition-all duration-200">Continental</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md hover:bg-primary-container hover:text-white transition-all duration-200">Pan-Asian</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md hover:bg-primary-container hover:text-white transition-all duration-200">North Indian</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md hover:bg-primary-container hover:text-white transition-all duration-200">Mediterranean</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md hover:bg-primary-container hover:text-white transition-all duration-200">Andhra Style</button>
+</div>
+</div>
+<!-- Popular Cities -->
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-md">Explore Popular Cities</h2>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<a class="group relative h-24 rounded-xl overflow-hidden" href="discover.html">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" data-alt="Vibrant cityscape of Mumbai showing skyline" style="background-image: url('images/mumbai_cityscape.png')"></div>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="text-white font-headline-sm text-headline-sm">Mumbai</span>
+</div>
+</a>
+<a class="group relative h-24 rounded-xl overflow-hidden" href="discover.html">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" data-alt="Green canopy landscape of Bengaluru" style="background-image: url('images/food_image_6.jpg')"></div>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="text-white font-headline-sm text-headline-sm">Bengaluru</span>
+</div>
+</a>
+<a class="group relative h-24 rounded-xl overflow-hidden" href="discover.html">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" data-alt="Scenic historical spots in Pune" style="background-image: url('images/pune_cityscape.png')"></div>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="text-white font-headline-sm text-headline-sm">Pune</span>
+</div>
+</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<!-- ===== Site Footer ===== -->
+<footer class="bg-[#1a0c0b] text-white mt-0 pb-20 md:pb-0">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-16 py-12 flex flex-col items-center text-center gap-4">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings:'FILL' 1;">restaurant</span>
+      <span class="text-2xl font-black tracking-tight text-white">FlavourMatch</span>
+    </a>
+    <p class="text-sm text-white/60 max-w-md leading-relaxed">
+      India's finest restaurant discovery platform. Find, compare and savour the best culinary experiences near you.
+    </p>
+    <p class="text-xs text-white/40 mt-2">
+      &copy; 2026 FlavourMatch. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<!-- BottomNavBar Shell -->
+<footer class="fixed bottom-0 left-0 right-0 z-50 flex md:hidden bg-surface/90 backdrop-blur-xl border-t border-outline-variant/30 shadow-[0_-4px_20px_0_rgba(0,0,0,0.05)] rounded-t-xl justify-around items-center px-4 py-2 pb-safe">
+<a href="index.html" class="flex flex-col items-center justify-center text-primary bg-primary-container/10 rounded-full px-4 py-1 active:scale-90 duration-200 ease-in-out">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a href="discover.html" class="flex flex-col items-center justify-center text-secondary hover:text-primary-container transition-all duration-200 active:scale-90 duration-200 ease-in-out">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-md text-label-md">Discover</span>
+</a>
+<a href="compare.html" class="flex flex-col items-center justify-center text-secondary hover:text-primary-container transition-all duration-200 active:scale-90 duration-200 ease-in-out">
+<span class="material-symbols-outlined">compare_arrows</span>
+<span class="font-label-md text-label-md">Compare</span>
+</a>
+</footer>
+<script>
+        // Static header structure verified.
+    </script>
+</body></html>

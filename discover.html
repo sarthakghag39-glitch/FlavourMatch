@@ -1,0 +1,1074 @@
+<!DOCTYPE html><html class="light bg-[#f7f9fb]" lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlavourMatch | Discover Gastronomy Nationwide</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Inter:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#1a1c1e",
+                    "secondary-container": "#e2e2e5",
+                    "error-container": "#ffdad6",
+                    "background": "#f7f9fb",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#636467",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c6c6c9",
+                    "primary-container": "#da3527",
+                    "outline": "#906f6b",
+                    "on-background": "#191c1e",
+                    "on-primary-fixed-variant": "#930002",
+                    "surface-container": "#eceef0",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "on-tertiary-container": "#fdfcff",
+                    "on-surface": "#191c1e",
+                    "surface-container-high": "#e6e8ea",
+                    "primary-fixed-dim": "#ffb4a9",
+                    "surface": "#f7f9fb",
+                    "tertiary-container": "#66768d",
+                    "inverse-on-surface": "#eff1f3",
+                    "tertiary": "#4d5d73",
+                    "on-surface-variant": "#5b403c",
+                    "primary": "#b61810",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "surface-bright": "#f7f9fb",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary-fixed": "#e2e2e5",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#d8dadc",
+                    "tertiary-fixed": "#d3e4fe",
+                    "surface-variant": "#e0e3e5",
+                    "on-secondary-fixed-variant": "#454749",
+                    "inverse-surface": "#2d3133",
+                    "surface-container-highest": "#e0e3e5",
+                    "primary-fixed": "#ffdad5",
+                    "outline-variant": "#e4beb8",
+                    "on-primary-fixed": "#410000",
+                    "secondary": "#5d5e61",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#fffbff",
+                    "surface-tint": "#ba1b12",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#ffb4a9",
+                    "on-tertiary-fixed": "#0b1c30"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "12px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px",
+                    "stack-md": "24px",
+                    "stack-lg": "48px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Montserrat"],
+                    "headline-sm": ["Montserrat"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Montserrat"],
+                    "display-lg-mobile": ["Montserrat"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .shimmer {
+            background: linear-gradient(90deg, #eceef0 25%, #f7f9fb 50%, #eceef0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e0e3e5; border-radius: 10px; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased overflow-x-hidden min-h-screen relative w-full transition-colors duration-300">
+<!-- TopAppBar -->
+<header class="bg-surface/80 backdrop-blur-md shadow-sm docked full-width top-0 sticky flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full z-50 transition-all duration-300 h-16">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-high transition-colors duration-200 p-2 rounded-full active:scale-95 hidden items-center justify-center h-10 w-10">menu</button>
+<a href="index.html" class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings:'FILL' 1;">restaurant</span>
+<span class="text-headline-md text-primary tracking-tight">FlavourMatch</span>
+</a>
+</div>
+<!-- Desktop Nav Center -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-secondary text-label-md font-label-md hover:text-primary transition-colors duration-200" href="index.html">Home</a>
+<a class="text-primary font-bold text-label-md font-label-md" href="discover.html">Discover</a>
+<a class="text-secondary text-label-md font-label-md hover:text-primary transition-colors duration-200" href="compare.html">Compare</a>
+</nav>
+
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-md pb-32">
+<!-- Search & Filter Hero Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] p-6 md:p-8 mb-stack-lg border border-outline-variant/30">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 items-end">
+<!-- City Dropdown -->
+<div class="space-y-2">
+<label class="font-label-md text-secondary block">City</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">location_city</span>
+<select id="city-filter" class="w-full pl-10 pr-4 py-3 bg-surface border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none font-body-md">
+<option value="">Select City</option>
+<option>Mumbai</option>
+<option>Bengaluru</option>
+<option>Pune</option>
+</select>
+</div>
+</div>
+<!-- Area Input -->
+<div class="space-y-2">
+<label class="font-label-md text-secondary block">Area / Neighborhood</label>
+<div class="relative flex items-center gap-2">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">location_on</span>
+<input type="text" id="area-filter" class="w-full pl-10 pr-4 py-3 bg-surface border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none font-body-md" placeholder="e.g. Bandra, Kothrud">
+</div>
+<button title="Use Current Location" class="bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant p-3 rounded-lg flex items-center justify-center active:scale-95 transition-colors h-[48px] w-[48px]" onclick="useCurrentLocation()">
+<span class="material-symbols-outlined text-primary">my_location</span>
+</button>
+</div>
+</div>
+<!-- Cuisine -->
+<div class="space-y-2">
+<label class="font-label-md text-secondary block">Cuisine</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">restaurant</span>
+<select id="cuisine-filter" class="w-full pl-10 pr-4 py-3 bg-surface border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none font-body-md">
+<option>All Cuisines</option>
+<option>South Indian</option>
+<option>North Indian</option>
+<option>Andhra Style</option>
+<option>Continental</option>
+<option>Asian</option>
+<option>Desserts</option>
+</select>
+</div>
+</div>
+<!-- Type -->
+<div class="space-y-2">
+<label class="font-label-md text-secondary block">Type</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">category</span>
+<select id="type-filter" class="w-full pl-10 pr-4 py-3 bg-surface border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none font-body-md">
+<option>Any Type</option>
+<option>Restaurant</option>
+<option>Cafe</option>
+<option>Bakery</option>
+<option>Casual Dining</option>
+<option>Quick Bites</option>
+<option>Fine Dining</option>
+<option>Bar</option>
+</select>
+</div>
+</div>
+<!-- Rating -->
+<div class="space-y-2">
+<label class="font-label-md text-secondary block">Min. Rating</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">star</span>
+<select id="rating-filter" class="w-full pl-10 pr-4 py-3 bg-surface border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none font-body-md">
+<option>3.0+ Stars</option>
+<option>4.0+ Stars</option>
+<option>4.5+ Stars</option>
+</select>
+</div>
+</div>
+<!-- Budget Slider & Action -->
+<div class="space-y-2">
+<label class="font-label-md text-secondary block" id="budget-label">Max Budget: ₹3,000</label>
+<div class="flex flex-col gap-4">
+<input id="budget-filter" class="w-full h-1.5 bg-secondary-container rounded-lg appearance-none cursor-pointer accent-primary" max="3000" min="100" step="50" type="range" value="3000">
+<button id="find-restaurants-btn" class="bg-primary text-on-primary font-headline-sm py-3 px-6 rounded-lg hover:bg-primary-container transition-all duration-200 active:scale-95 shadow-md flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">search</span>
+                            Find Restaurants
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Results Header -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-stack-md">
+<div>
+<h2 class="font-headline-md text-on-surface">Curated Restaurant Discoveries</h2>
+<p class="text-secondary font-body-sm">Showing top-rated culinary destinations nationwide</p>
+</div>
+<div class="flex items-center gap-4 w-full sm:w-auto">
+<div class="flex items-center gap-2 bg-surface-container-high p-1 rounded-lg">
+<button id="grid-view-btn" class="view-toggle p-2 bg-surface-container-lowest text-primary rounded-md shadow-sm transition-all">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button id="list-view-btn" class="view-toggle p-2 text-secondary hover:text-primary transition-all">
+<span class="material-symbols-outlined">view_list</span>
+</button>
+</div>
+<div class="relative flex-1 md:flex-none">
+<select id="sort-select" class="w-full md:w-48 pl-4 pr-10 py-2 bg-surface-container-high border-none rounded-lg focus:ring-2 focus:ring-primary outline-none appearance-none font-label-md text-on-surface">
+<option value="rating">Sort by: Rating</option>
+<option value="reviews">Sort by: Popularity</option>
+<option value="price-low">Price: Low to High</option>
+<option value="price-high">Price: High to Low</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-secondary">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Main Content Grid -->
+<div id="restaurants-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+
+<!-- No Results Placeholder -->
+<div id="no-results" class="hidden col-span-full py-16 flex flex-col items-center justify-center text-center">
+    <span class="material-symbols-outlined text-outline text-6xl mb-4">search_off</span>
+    <h3 class="font-headline-md text-on-surface mb-2">No Restaurants Found</h3>
+    <p class="text-secondary font-body-md mb-6">We couldn't find any tables matching your criteria. Try adjusting your filters.</p>
+    <button onclick="resetFilters()" class="bg-primary text-on-primary font-label-md py-2.5 px-6 rounded-full hover:bg-primary-container transition-all active:scale-95">Reset Filters</button>
+</div>
+
+<!-- Restaurant Card 1: Heritage Dosa House -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_0_rgba(0,0,0,0.08)] transition-all duration-300 border border-outline-variant/20 flex flex-col" data-city="Bengaluru" data-area="Malleshwaram" data-cuisine="South Indian" data-type="Quick Bites" data-rating="4.8" data-budget="1" data-cost="300" data-reviews="4800">
+<div class="relative h-56 overflow-hidden">
+<img alt="Crispy Golden Masala Dosa served with coconut chutney and sambar" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/food_image_9.jpg">
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[#FFD700]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.8</span>
+</div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="bg-primary/90 text-on-primary text-[10px] uppercase font-bold tracking-widest px-2 py-1 rounded">Quick Bites</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-on-surface">Heritage Dosa House</h3>
+<span class="text-secondary font-label-md">₹300 for two</span>
+</div>
+<div class="flex items-center gap-2 text-secondary mb-4 font-body-sm">
+<span class="material-symbols-outlined text-[18px]">restaurant</span>
+<span class="">South Indian</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">Malleshwaram, Bengaluru</span>
+
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">(4.8k reviews)</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex flex-wrap gap-2 justify-between items-center">
+<div class="flex gap-2">
+<a href="details.html" class="text-primary font-label-md hover:underline flex items-center gap-1">View Details</a>
+<a href="compare.html?a=Heritage%20Dosa%20House" class="text-secondary font-label-md hover:text-primary flex items-center gap-1">Compare</a>
+</div>
+<button class="text-primary font-label-md hover:underline flex items-center gap-1 group/btn">
+                            Find Similar
+                            <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+
+<!-- Restaurant Card 2: Saraswat Idli Mess -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_0_rgba(0,0,0,0.08)] transition-all duration-300 border border-outline-variant/20 flex flex-col" data-city="Bengaluru" data-area="Lalbagh" data-cuisine="South Indian" data-type="Quick Bites" data-rating="4.9" data-budget="1" data-cost="200" data-reviews="3200">
+<div class="relative h-56 overflow-hidden">
+<img alt="Traditional South Indian breakfast items" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/food_image_10.jpg">
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[#FFD700]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.9</span>
+</div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="bg-primary/90 text-on-primary text-[10px] uppercase font-bold tracking-widest px-2 py-1 rounded">Quick Bites</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-on-surface">Saraswat Idli Mess</h3>
+<span class="text-secondary font-label-md">₹200 for two</span>
+</div>
+<div class="flex items-center gap-2 text-secondary mb-4 font-body-sm">
+<span class="material-symbols-outlined text-[18px]">restaurant</span>
+<span class="">South Indian Breakfast</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">Lalbagh, Bengaluru</span>
+
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">(3.2k reviews)</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex flex-wrap gap-2 justify-between items-center">
+<div class="flex gap-2">
+<a href="details.html" class="text-primary font-label-md hover:underline flex items-center gap-1">View Details</a>
+<a href="compare.html?a=Saraswat%20Idli%20Mess" class="text-secondary font-label-md hover:text-primary flex items-center gap-1">Compare</a>
+</div>
+<button class="text-primary font-label-md hover:underline flex items-center gap-1 group/btn">
+                            Find Similar
+                            <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+
+<!-- Restaurant Card 3: Spice Garden -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_0_rgba(0,0,0,0.08)] transition-all duration-300 border border-outline-variant/20 flex flex-col" data-city="Bengaluru" data-area="Koramangala" data-cuisine="Andhra Style" data-type="Casual Dining" data-rating="4.8" data-budget="2" data-cost="800" data-reviews="8200">
+<div class="relative h-56 overflow-hidden">
+<img alt="Famous Special Biryani" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/food_image_4.jpg">
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[#FFD700]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.8</span>
+</div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="bg-primary/90 text-on-primary text-[10px] uppercase font-bold tracking-widest px-2 py-1 rounded">Casual Dining</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-on-surface">Spice Garden</h3>
+<span class="text-secondary font-label-md">₹800 for two</span>
+</div>
+<div class="flex items-center gap-2 text-secondary mb-4 font-body-sm">
+<span class="material-symbols-outlined text-[18px]">restaurant</span>
+<span class="">Andhra Style, Biryani</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">Koramangala, Bengaluru</span>
+
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">(8.2k reviews)</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex flex-wrap gap-2 justify-between items-center">
+<div class="flex gap-2">
+<a href="details.html" class="text-primary font-label-md hover:underline flex items-center gap-1">View Details</a>
+<a href="compare.html?a=Spice%20Garden" class="text-secondary font-label-md hover:text-primary flex items-center gap-1">Compare</a>
+</div>
+<button class="text-primary font-label-md hover:underline flex items-center gap-1 group/btn">
+                            Find Similar
+                            <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+
+<!-- Restaurant Card 4: Urban Bites -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_0_rgba(0,0,0,0.08)] transition-all duration-300 border border-outline-variant/20 flex flex-col" data-city="Mumbai" data-area="Bandra" data-cuisine="North Indian" data-type="Casual Dining" data-rating="4.5" data-budget="2" data-cost="950" data-reviews="12500">
+<div class="relative h-56 overflow-hidden">
+<img alt="Signature Grilled Chicken and Curries" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/food_image_3.jpg">
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[#FFD700]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.5</span>
+</div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="bg-primary/90 text-on-primary text-[10px] uppercase font-bold tracking-widest px-2 py-1 rounded">Casual Dining</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-on-surface">Urban Bites</h3>
+<span class="text-secondary font-label-md">₹950 for two</span>
+</div>
+<div class="flex items-center gap-2 text-secondary mb-4 font-body-sm">
+<span class="material-symbols-outlined text-[18px]">restaurant</span>
+<span class="">Mughlai, North Indian</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">Bandra, Mumbai</span>
+
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">(12.5k reviews)</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex flex-wrap gap-2 justify-between items-center">
+<div class="flex gap-2">
+<a href="compare.html?a=Urban%20Bites" class="text-primary font-label-md hover:underline flex items-center gap-1">View Details</a>
+<a href="compare.html" class="text-secondary font-label-md hover:text-primary flex items-center gap-1">Compare</a>
+</div>
+<button class="text-primary font-label-md hover:underline flex items-center gap-1 group/btn">
+                            Find Similar
+                            <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+
+<!-- Restaurant Card 5: Mavalli Cafe -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_0_rgba(0,0,0,0.08)] transition-all duration-300 border border-outline-variant/20 flex flex-col" data-city="Pune" data-area="Deccan Gymkhana" data-cuisine="South Indian" data-type="Cafe" data-rating="4.7" data-budget="2" data-cost="600" data-reviews="2500">
+<div class="relative h-56 overflow-hidden">
+<img alt="Heritage South Indian Meals" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/food_image_11.jpg">
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[#FFD700]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.7</span>
+</div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="bg-primary/90 text-on-primary text-[10px] uppercase font-bold tracking-widest px-2 py-1 rounded">Cafe</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-on-surface">Mavalli Cafe</h3>
+<span class="text-secondary font-label-md">₹600 for two</span>
+</div>
+<div class="flex items-center gap-2 text-secondary mb-4 font-body-sm">
+<span class="material-symbols-outlined text-[18px]">restaurant</span>
+<span class="">South Indian Heritage</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">Deccan Gymkhana, Pune</span>
+
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">(2.5k reviews)</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex flex-wrap gap-2 justify-between items-center">
+<div class="flex gap-2">
+<a href="details.html" class="text-primary font-label-md hover:underline flex items-center gap-1">View Details</a>
+<a href="compare.html?a=Mavalli%20Cafe" class="text-secondary font-label-md hover:text-primary flex items-center gap-1">Compare</a>
+</div>
+<button class="text-primary font-label-md hover:underline flex items-center gap-1 group/btn">
+                            Find Similar
+                            <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+
+<!-- Restaurant Card 6: The Craft Beer Co. -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_0_rgba(0,0,0,0.08)] transition-all duration-300 border border-outline-variant/20 flex flex-col" data-city="Pune" data-area="Kothrud" data-cuisine="Continental" data-type="Bar" data-rating="4.6" data-budget="3" data-cost="1500" data-reviews="2700">
+<div class="relative h-56 overflow-hidden">
+<img alt="Pub Atmosphere and Pizza" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/food_image_12.jpg">
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[#FFD700]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.6</span>
+</div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="bg-primary/90 text-on-primary text-[10px] uppercase font-bold tracking-widest px-2 py-1 rounded">Bar</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-on-surface">The Craft Beer Co.</h3>
+<span class="text-secondary font-label-md">₹1,500 for two</span>
+</div>
+<div class="flex items-center gap-2 text-secondary mb-4 font-body-sm">
+<span class="material-symbols-outlined text-[18px]">restaurant</span>
+<span class="">Continental, Pub Grub</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">Kothrud, Pune</span>
+
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">(2.7k reviews)</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex flex-wrap gap-2 justify-between items-center">
+<div class="flex gap-2">
+<a href="details.html" class="text-primary font-label-md hover:underline flex items-center gap-1">View Details</a>
+<a href="compare.html?a=The%20Craft%20Beer%20Co." class="text-secondary font-label-md hover:text-primary flex items-center gap-1">Compare</a>
+</div>
+<button class="text-primary font-label-md hover:underline flex items-center gap-1 group/btn">
+                            Find Similar
+                            <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+
+<!-- Restaurant Card 7: Cafe Aroma Desserts -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_0_rgba(0,0,0,0.08)] transition-all duration-300 border border-outline-variant/20 flex flex-col" data-city="Pune" data-area="Koregaon Park" data-cuisine="Desserts" data-type="Cafe" data-rating="4.9" data-budget="1" data-cost="500" data-reviews="1800">
+<div class="relative h-56 overflow-hidden">
+<img alt="Ice Cream Sundae" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/food_image_13.jpg">
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[#FFD700]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.9</span>
+</div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="bg-primary/90 text-on-primary text-[10px] uppercase font-bold tracking-widest px-2 py-1 rounded">Cafe</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-on-surface">Cafe Aroma Desserts</h3>
+<span class="text-secondary font-label-md">₹500 for two</span>
+</div>
+<div class="flex items-center gap-2 text-secondary mb-4 font-body-sm">
+<span class="material-symbols-outlined text-[18px]">restaurant</span>
+<span class="">Desserts, Ice Cream</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">Koregaon Park, Pune</span>
+
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">(1.8k reviews)</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex flex-wrap gap-2 justify-between items-center">
+<div class="flex gap-2">
+<a href="details.html" class="text-primary font-label-md hover:underline flex items-center gap-1">View Details</a>
+<a href="compare.html?a=Cafe%20Aroma%20Desserts" class="text-secondary font-label-md hover:text-primary flex items-center gap-1">Compare</a>
+</div>
+<button class="text-primary font-label-md hover:underline flex items-center gap-1 group/btn">
+                            Find Similar
+                            <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+
+
+<!-- Restaurant Card 8: The Mumbai Tiffin -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_0_rgba(0,0,0,0.08)] transition-all duration-300 border border-outline-variant/20 flex flex-col" data-city="Mumbai" data-area="Dadar" data-cuisine="North Indian" data-type="Casual Dining" data-rating="4.3" data-budget="1" data-cost="450" data-reviews="3300">
+<div class="relative h-56 overflow-hidden">
+<img alt="Mumbai Tiffin lunchbox service" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/food_image_1.jpg">
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[#FFD700]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.3</span>
+</div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="bg-primary/90 text-on-primary text-[10px] uppercase font-bold tracking-widest px-2 py-1 rounded">Casual Dining</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-on-surface">The Mumbai Tiffin</h3>
+<span class="text-secondary font-label-md">₹450 for two</span>
+</div>
+<div class="flex items-center gap-2 text-secondary mb-4 font-body-sm">
+<span class="material-symbols-outlined text-[18px]">restaurant</span>
+<span class="">North Indian, Tiffin</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">Dadar, Mumbai</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">(3.3k reviews)</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex flex-wrap gap-2 justify-between items-center">
+<div class="flex gap-2">
+<a href="details.html" class="text-primary font-label-md hover:underline flex items-center gap-1">View Details</a>
+<a href="compare.html?a=The%20Mumbai%20Tiffin" class="text-secondary font-label-md hover:text-primary flex items-center gap-1">Compare</a>
+</div>
+<button class="text-primary font-label-md hover:underline flex items-center gap-1 group/btn">
+                            Find Similar
+                            <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+
+<!-- Restaurant Card 9: The Food Junction -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_0_rgba(0,0,0,0.08)] transition-all duration-300 border border-outline-variant/20 flex flex-col" data-city="Bengaluru" data-area="Jayanagar" data-cuisine="Continental" data-type="Cafe" data-rating="4.5" data-budget="2" data-cost="1000" data-reviews="2100">
+<div class="relative h-56 overflow-hidden">
+<img alt="Gourmet Burgers and Fries" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/food_image_14.jpg">
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[#FFD700]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.5</span>
+</div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="bg-primary/90 text-on-primary text-[10px] uppercase font-bold tracking-widest px-2 py-1 rounded">Cafe</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-on-surface">The Food Junction</h3>
+<span class="text-secondary font-label-md">₹1,000 for two</span>
+</div>
+<div class="flex items-center gap-2 text-secondary mb-4 font-body-sm">
+<span class="material-symbols-outlined text-[18px]">restaurant</span>
+<span class="">American, Continental</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">Jayanagar, Bengaluru</span>
+
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">(2.1k reviews)</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex flex-wrap gap-2 justify-between items-center">
+<div class="flex gap-2">
+<a href="details.html" class="text-primary font-label-md hover:underline flex items-center gap-1">View Details</a>
+<a href="compare.html?a=The%20Food%20Junction" class="text-secondary font-label-md hover:text-primary flex items-center gap-1">Compare</a>
+</div>
+<button class="text-primary font-label-md hover:underline flex items-center gap-1 group/btn">
+                            Find Similar
+                            <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+
+<!-- Restaurant Card 10: Vintage Corner Cafe -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_0_rgba(0,0,0,0.08)] transition-all duration-300 border border-outline-variant/20 flex flex-col" data-city="Mumbai" data-area="Colaba" data-cuisine="Continental" data-type="Cafe" data-rating="4.2" data-budget="2" data-cost="700" data-reviews="1500">
+<div class="relative h-56 overflow-hidden">
+<img alt="Cafe breakfast items" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/food_image_15.jpg">
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[#FFD700]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.2</span>
+</div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="bg-primary/90 text-on-primary text-[10px] uppercase font-bold tracking-widest px-2 py-1 rounded">Heritage Cafe</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-on-surface">Vintage Corner Cafe</h3>
+<span class="text-secondary font-label-md">₹700 for two</span>
+</div>
+<div class="flex items-center gap-2 text-secondary mb-4 font-body-sm">
+<span class="material-symbols-outlined text-[18px]">restaurant</span>
+<span class="">British-Indian Cafe</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">Colaba, Mumbai</span>
+
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">(1.5k reviews)</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex flex-wrap gap-2 justify-between items-center">
+<div class="flex gap-2">
+<a href="details.html" class="text-primary font-label-md hover:underline flex items-center gap-1">View Details</a>
+<a href="compare.html?a=Vintage%20Corner%20Cafe" class="text-secondary font-label-md hover:text-primary flex items-center gap-1">Compare</a>
+</div>
+<button class="text-primary font-label-md hover:underline flex items-center gap-1 group/btn">
+                            Find Similar
+                            <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+
+
+<!-- Restaurant Card 11: Himalayan Kitchen -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_0_rgba(0,0,0,0.08)] transition-all duration-300 border border-outline-variant/20 flex flex-col" data-city="Bengaluru" data-area="Indiranagar" data-cuisine="North Indian" data-type="Casual Dining" data-rating="4.6" data-budget="3" data-cost="1200" data-reviews="3800">
+<div class="relative h-56 overflow-hidden">
+<img alt="Himalayan momos and thukpa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/food_image_2.jpg">
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[#FFD700]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.6</span>
+</div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="bg-primary/90 text-on-primary text-[10px] uppercase font-bold tracking-widest px-2 py-1 rounded">Casual Dining</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-on-surface">Himalayan Kitchen</h3>
+<span class="text-secondary font-label-md">₹1,200 for two</span>
+</div>
+<div class="flex items-center gap-2 text-secondary mb-4 font-body-sm">
+<span class="material-symbols-outlined text-[18px]">restaurant</span>
+<span class="">North Indian, Himalayan</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">Indiranagar, Bengaluru</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">(3.8k reviews)</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex flex-wrap gap-2 justify-between items-center">
+<div class="flex gap-2">
+<a href="details.html" class="text-primary font-label-md hover:underline flex items-center gap-1">View Details</a>
+<a href="compare.html?a=Himalayan%20Kitchen" class="text-secondary font-label-md hover:text-primary flex items-center gap-1">Compare</a>
+</div>
+<button class="text-primary font-label-md hover:underline flex items-center gap-1 group/btn">
+                            Find Similar
+                            <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+
+<!-- Restaurant Card 12: Oceanic Coastal Bistro -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_0_rgba(0,0,0,0.08)] transition-all duration-300 border border-outline-variant/20 flex flex-col" data-city="Mumbai" data-area="Juhu" data-cuisine="Asian" data-type="Fine Dining" data-rating="4.7" data-budget="4" data-cost="2500" data-reviews="1900">
+<div class="relative h-56 overflow-hidden">
+<img alt="Seafood Coastal dining setting" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/food_image_16.jpg">
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[#FFD700]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.7</span>
+</div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="bg-primary/90 text-on-primary text-[10px] uppercase font-bold tracking-widest px-2 py-1 rounded">Fine Dining</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-on-surface">Oceanic Coastal Bistro</h3>
+<span class="text-secondary font-label-md">₹2,500 for two</span>
+</div>
+<div class="flex items-center gap-2 text-secondary mb-4 font-body-sm">
+<span class="material-symbols-outlined text-[18px]">restaurant</span>
+<span class="">Coastal Indian</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">Juhu, Mumbai</span>
+
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">(1.9k reviews)</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex flex-wrap gap-2 justify-between items-center">
+<div class="flex gap-2">
+<a href="details.html" class="text-primary font-label-md hover:underline flex items-center gap-1">View Details</a>
+<a href="compare.html?a=Oceanic%20Coastal%20Bistro" class="text-secondary font-label-md hover:text-primary flex items-center gap-1">Compare</a>
+</div>
+<button class="text-primary font-label-md hover:underline flex items-center gap-1 group/btn">
+                            Find Similar
+                            <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+
+<!-- Restaurant Card 13: Taste Hub Vegetarian -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_0_rgba(0,0,0,0.08)] transition-all duration-300 border border-outline-variant/20 flex flex-col" data-city="Pune" data-area="Shivajinagar" data-cuisine="South Indian" data-type="Casual Dining" data-rating="4.1" data-budget="1" data-cost="400" data-reviews="1100">
+<div class="relative h-56 overflow-hidden">
+<img alt="Hot idli and vada platter" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/food_image_16.jpg">
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[#FFD700]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.1</span>
+</div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="bg-primary/90 text-on-primary text-[10px] uppercase font-bold tracking-widest px-2 py-1 rounded">Casual Dining</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-on-surface">Taste Hub Vegetarian</h3>
+<span class="text-secondary font-label-md">₹400 for two</span>
+</div>
+<div class="flex items-center gap-2 text-secondary mb-4 font-body-sm">
+<span class="material-symbols-outlined text-[18px]">restaurant</span>
+<span class="">South Indian Veg</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">Shivajinagar, Pune</span>
+
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">(1.1k reviews)</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex flex-wrap gap-2 justify-between items-center">
+<div class="flex gap-2">
+<a href="details.html" class="text-primary font-label-md hover:underline flex items-center gap-1">View Details</a>
+<a href="compare.html?a=Taste%20Hub%20Vegetarian" class="text-secondary font-label-md hover:text-primary flex items-center gap-1">Compare</a>
+</div>
+<button class="text-primary font-label-md hover:underline flex items-center gap-1 group/btn">
+                            Find Similar
+                            <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+
+
+<!-- Restaurant Card 14: Flavor Kitchen Fusion -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_0_rgba(0,0,0,0.08)] transition-all duration-300 border border-outline-variant/20 flex flex-col" data-city="Bengaluru" data-area="UB City" data-cuisine="Asian" data-type="Fine Dining" data-rating="4.4" data-budget="4" data-cost="2200" data-reviews="1200">
+<div class="relative h-56 overflow-hidden">
+<img alt="Modern Molecular Gastronomy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="images/food_image_17.jpg">
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[#FFD700]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.4</span>
+</div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="bg-primary/90 text-on-primary text-[10px] uppercase font-bold tracking-widest px-2 py-1 rounded">Fine Dining</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-on-surface">Flavor Kitchen Fusion</h3>
+<span class="text-secondary font-label-md">₹2,200 for two</span>
+</div>
+<div class="flex items-center gap-2 text-secondary mb-4 font-body-sm">
+<span class="material-symbols-outlined text-[18px]">restaurant</span>
+<span class="">Modern Indian / Fusion</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">UB City, Bengaluru</span>
+
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="">(1.2k reviews)</span>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex flex-wrap gap-2 justify-between items-center">
+<div class="flex gap-2">
+<a href="details.html" class="text-primary font-label-md hover:underline flex items-center gap-1">View Details</a>
+<a href="compare.html?a=Flavor%20Kitchen%20Fusion" class="text-secondary font-label-md hover:text-primary flex items-center gap-1">Compare</a>
+</div>
+<button class="text-primary font-label-md hover:underline flex items-center gap-1 group/btn">
+                            Find Similar
+                            <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+
+
+</div>
+<div class="mt-stack-lg flex justify-center">
+<button class="px-10 py-4 bg-surface-container-high text-on-surface-variant font-bold rounded-full hover:bg-surface-container-highest transition-all active:scale-95">
+                Explore More Gems
+            </button>
+</div>
+</main>
+
+<!-- ===== Site Footer ===== -->
+<footer class="bg-[#1a0c0b] text-white pb-20 md:pb-0">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-16 py-12 flex flex-col items-center text-center gap-4">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings:'FILL' 1;">restaurant</span>
+      <span class="text-2xl font-black tracking-tight text-white">FlavourMatch</span>
+    </a>
+    <p class="text-sm text-white/60 max-w-md leading-relaxed">
+      India's finest restaurant discovery platform. Find, compare and savour the best culinary experiences near you.
+    </p>
+    <p class="text-xs text-white/40 mt-2">
+      &copy; 2026 FlavourMatch. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 flex md:hidden justify-around items-center px-4 py-2 pb-safe bg-surface/90 dark:bg-surface-dim/90 backdrop-blur-xl rounded-t-xl shadow-[0_-4px_20px_0_rgba(0,0,0,0.05)] border-t border-outline-variant/30">
+<a class="flex flex-col items-center justify-center text-secondary hover:text-primary-container transition-all duration-200" href="index.html">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary bg-primary-container/10 rounded-full px-4 py-1 active:scale-90 duration-200 ease-in-out" href="discover.html">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-md text-label-md">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:text-primary-container transition-all duration-200" href="compare.html">
+<span class="material-symbols-outlined">compare_arrows</span>
+<span class="font-label-md text-label-md">Compare</span>
+</a>
+</nav>
+<script>
+        // DOM Elements
+        const cityFilter = document.getElementById('city-filter');
+        const areaFilter = document.getElementById('area-filter');
+        const cuisineFilter = document.getElementById('cuisine-filter');
+        const typeFilter = document.getElementById('type-filter');
+        const ratingFilter = document.getElementById('rating-filter');
+        const budgetFilter = document.getElementById('budget-filter');
+        const budgetLabel = document.getElementById('budget-label');
+        const findBtn = document.getElementById('find-restaurants-btn');
+        const noResults = document.getElementById('no-results');
+        // Use [data-city] selector to only target restaurant cards, not other .group elements
+        const cards = document.querySelectorAll('#restaurants-grid [data-city]');
+
+        function formatBudget(val) {
+            return `Max Budget: ₹${parseInt(val).toLocaleString('en-IN')}`;
+        }
+
+        // Filter Logic
+        function applyFilters() {
+            const cityVal = cityFilter.value;
+            const areaVal = areaFilter.value.trim().toLowerCase();
+            const cuisineVal = cuisineFilter.value;
+            const typeVal = typeFilter.value;
+            const ratingVal = ratingFilter.value;
+            const budgetVal = parseInt(budgetFilter.value);
+
+            let minRating = 0;
+            if (ratingVal.includes('4.5')) minRating = 4.5;
+            else if (ratingVal.includes('4.0')) minRating = 4.0;
+            else if (ratingVal.includes('3.0')) minRating = 3.0;
+
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                // Read dataset values
+                const cardCity = card.getAttribute('data-city') || '';
+                const cardArea = (card.getAttribute('data-area') || '').toLowerCase();
+                const cardCuisine = card.getAttribute('data-cuisine') || '';
+                const cardType = card.getAttribute('data-type') || '';
+                const cardRating = parseFloat(card.getAttribute('data-rating') || '0');
+                const cardCost = parseInt(card.getAttribute('data-cost') || '9999');
+
+                // Check constraints
+                const cityMatch = !cityVal || cardCity === cityVal;
+                const areaMatch = !areaVal || cardArea.includes(areaVal);
+                const cuisineMatch = cuisineVal === 'All Cuisines' || cardCuisine === cuisineVal;
+                const typeMatch = typeVal === 'Any Type' || cardType === typeVal;
+                const ratingMatch = cardRating >= minRating;
+                const budgetMatch = cardCost <= parseInt(budgetFilter.value);
+
+                if (cityMatch && areaMatch && cuisineMatch && typeMatch && ratingMatch && budgetMatch) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Toggle no-results container
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+            if (typeof sortAndRender === 'function') {
+                sortAndRender();
+            }
+        }
+
+        // Reset Filters function
+        window.resetFilters = function() {
+            cityFilter.value = '';
+            areaFilter.value = '';
+            cuisineFilter.value = 'All Cuisines';
+            typeFilter.value = 'Any Type';
+            ratingFilter.value = '3.0+ Stars';
+            budgetFilter.value = '3000';
+            budgetLabel.textContent = formatBudget(3000);
+            applyFilters();
+        };
+
+        // GPS Action simulation
+        window.useCurrentLocation = function() {
+            cityFilter.value = 'Mumbai';
+            areaFilter.value = 'Bandra';
+            
+            // Notification toast
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-24 left-1/2 -translate-x-1/2 bg-primary text-white px-6 py-3 rounded-full shadow-lg transition-opacity duration-300 z-50 text-label-md font-bold';
+            toast.innerText = 'GPS: Bandra, Mumbai detected!';
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 2000);
+
+            applyFilters();
+        };
+
+        // Event listeners for instant filtering
+        cityFilter.addEventListener('change', applyFilters);
+        areaFilter.addEventListener('input', applyFilters);
+        cuisineFilter.addEventListener('change', applyFilters);
+        typeFilter.addEventListener('change', applyFilters);
+        ratingFilter.addEventListener('change', applyFilters);
+        
+        // Initialise budget label on page load
+        budgetLabel.textContent = formatBudget(budgetFilter.value);
+
+        budgetFilter.addEventListener('input', () => {
+            budgetLabel.textContent = formatBudget(budgetFilter.value);
+            applyFilters();
+        });
+
+        // Trigger filter on click as well
+        findBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            applyFilters();
+        });
+
+        // Toggle grid/list view
+        const gridViewBtn = document.getElementById('grid-view-btn');
+        const listViewBtn = document.getElementById('list-view-btn');
+        const sortSelect = document.getElementById('sort-select');
+        const cardsContainer = document.getElementById('restaurants-grid');
+
+        gridViewBtn.addEventListener('click', () => {
+            gridViewBtn.className = "view-toggle p-2 bg-surface-container-lowest text-primary rounded-md shadow-sm transition-all";
+            listViewBtn.className = "view-toggle p-2 text-secondary hover:text-primary transition-all";
+
+            cardsContainer.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter";
+            cards.forEach(card => {
+                card.classList.remove('sm:flex-row');
+                card.classList.add('flex-col');
+
+                const imgWrapper = card.firstElementChild;
+                imgWrapper.className = "relative h-56 overflow-hidden";
+            });
+        });
+
+        listViewBtn.addEventListener('click', () => {
+            listViewBtn.className = "view-toggle p-2 bg-surface-container-lowest text-primary rounded-md shadow-sm transition-all";
+            gridViewBtn.className = "view-toggle p-2 text-secondary hover:text-primary transition-all";
+
+            cardsContainer.className = "flex flex-col gap-6";
+            cards.forEach(card => {
+                card.classList.remove('flex-col');
+                card.classList.add('sm:flex-row');
+
+                const imgWrapper = card.firstElementChild;
+                imgWrapper.className = "relative h-56 sm:h-auto w-full sm:w-72 flex-shrink-0 overflow-hidden";
+            });
+        });
+
+        // Sorting Logic
+        window.sortAndRender = function() {
+            const sortBy = sortSelect.value;
+            const sortedCards = Array.from(cards).sort((a, b) => {
+                if (sortBy === 'rating') {
+                    const ratingA = parseFloat(a.getAttribute('data-rating') || '0');
+                    const ratingB = parseFloat(b.getAttribute('data-rating') || '0');
+                    return ratingB - ratingA;
+                } else if (sortBy === 'reviews') {
+                    const reviewsA = parseInt(a.getAttribute('data-reviews') || '0');
+                    const reviewsB = parseInt(b.getAttribute('data-reviews') || '0');
+                    return reviewsB - reviewsA;
+                } else if (sortBy === 'price-low') {
+                    const budgetA = parseInt(a.getAttribute('data-cost') || '0');
+                    const budgetB = parseInt(b.getAttribute('data-cost') || '0');
+                    return budgetA - budgetB;
+                } else if (sortBy === 'price-high') {
+                    const budgetA = parseInt(a.getAttribute('data-cost') || '0');
+                    const budgetB = parseInt(b.getAttribute('data-cost') || '0');
+                    return budgetB - budgetA;
+                }
+                return 0;
+            });
+
+            // Re-append sorted cards in order
+            sortedCards.forEach(card => cardsContainer.appendChild(card));
+        };
+
+        sortSelect.addEventListener('change', sortAndRender);
+
+        // Hover effect for cards to simulate interactive depth
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+            });
+            card.style.transition = 'transform 0.3s ease';
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Update details page links dynamically
+        cards.forEach(card => {
+            const h3 = card.querySelector('h3');
+            if (h3) {
+                const name = h3.textContent.trim();
+                const viewDetailsLink = card.querySelector('a[href="details.html"]');
+                if (viewDetailsLink) {
+                    viewDetailsLink.href = `details.html?name=${encodeURIComponent(name)}`;
+                }
+                
+                // Find Similar Button handler
+                const findSimilarBtn = Array.from(card.querySelectorAll('button')).find(btn => btn.textContent.includes('Find Similar'));
+                if (findSimilarBtn) {
+                    findSimilarBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        window.location.href = `details.html?name=${encodeURIComponent(name)}#similar-section`;
+                    });
+                }
+            }
+        });
+
+        // Run initially
+        applyFilters();
+    </script>
+</body></html>

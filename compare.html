@@ -1,0 +1,570 @@
+<!DOCTYPE html><html class="light bg-[#f7f9fb]" lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compare Restaurants | FlavourMatch</title>
+<script src="restaurants.js"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .comparison-gradient {
+            background: linear-gradient(135deg, rgba(218, 53, 39, 0.05) 0%, rgba(247, 249, 251, 0) 100%);
+        }
+        .winner-glow {
+            box-shadow: 0 0 20px rgba(218, 53, 39, 0.15);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#1a1c1e",
+                        "secondary-container": "#e2e2e5",
+                        "error-container": "#ffdad6",
+                        "background": "#f7f9fb",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#636467",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c6c6c9",
+                        "primary-container": "#da3527",
+                        "outline": "#906f6b",
+                        "on-background": "#191c1e",
+                        "on-primary-fixed-variant": "#930002",
+                        "surface-container": "#eceef0",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-tertiary-container": "#fdfcff",
+                        "on-surface": "#191c1e",
+                        "surface-container-high": "#e6e8ea",
+                        "primary-fixed-dim": "#ffb4a9",
+                        "surface": "#f7f9fb",
+                        "tertiary-container": "#66768d",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary": "#4d5d73",
+                        "on-surface-variant": "#5b403c",
+                        "primary": "#b61810",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "surface-bright": "#f7f9fb",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-fixed": "#e2e2e5",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#d8dadc",
+                        "tertiary-fixed": "#d3e4fe",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary-fixed-variant": "#454749",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed": "#ffdad5",
+                        "outline-variant": "#e4beb8",
+                        "on-primary-fixed": "#410000",
+                        "secondary": "#5d5e61",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#fffbff",
+                        "surface-tint": "#ba1b12",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#ffb4a9",
+                        "on-tertiary-fixed": "#0b1c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "12px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "stack-md": "24px",
+                        "stack-lg": "48px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Montserrat"],
+                        "headline-sm": ["Montserrat"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "display-lg-mobile": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden min-h-screen relative w-full">
+<!-- TopAppBar -->
+<header class="bg-surface/80 backdrop-blur-md shadow-sm docked full-width top-0 sticky flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full z-50 transition-all duration-300 h-16">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-high transition-colors duration-200 p-2 rounded-full active:scale-95 hidden items-center justify-center h-10 w-10">menu</button>
+<a href="index.html" class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings:'FILL' 1;">restaurant</span>
+<span class="text-headline-md text-primary tracking-tight">FlavourMatch</span>
+</a>
+</div>
+<!-- Desktop Nav Center -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-secondary text-label-md font-label-md hover:text-primary transition-colors duration-200" href="index.html">Home</a>
+<a class="text-secondary text-label-md font-label-md hover:text-primary transition-colors duration-200" href="discover.html">Discover</a>
+<a class="text-primary font-bold text-label-md font-label-md" href="compare.html">Compare</a>
+</nav>
+
+</header>
+<main class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg pb-32">
+<!-- Search & Action Section -->
+<section class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-gutter items-center mb-stack-lg">
+<!-- Restaurant A Selector -->
+<div class="relative group">
+<label class="block font-label-md text-label-md text-secondary mb-2 uppercase tracking-widest">Restaurant A</label>
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant/30 rounded-xl px-4 py-4 shadow-sm group-focus-within:border-primary-container transition-all">
+<span class="material-symbols-outlined text-outline mr-3">search</span>
+<input id="rest-a-input" class="bg-transparent border-none focus:ring-0 w-full font-body-md text-on-surface" placeholder="Search first restaurant..." type="text" value="Spice Garden" autocomplete="off">
+</div>
+<div id="rest-a-autocomplete" class="absolute left-0 right-0 mt-1 bg-white border border-outline-variant/30 rounded-xl shadow-lg hidden z-30 max-h-60 overflow-y-auto"></div>
+</div>
+<!-- VS Divider -->
+<div class="flex justify-center my-2 md:my-0">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-display-lg-mobile text-xl shadow-lg transform md:-translate-y-[-10px]">
+                    VS
+                </div>
+</div>
+<!-- Restaurant B Selector -->
+<div class="relative group">
+<label class="block font-label-md text-label-md text-secondary mb-2 uppercase tracking-widest">Restaurant B</label>
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant/30 rounded-xl px-4 py-4 shadow-sm group-focus-within:border-primary-container transition-all">
+<span class="material-symbols-outlined text-outline mr-3">search</span>
+<input id="rest-b-input" class="bg-transparent border-none focus:ring-0 w-full font-body-md text-on-surface" placeholder="Search second restaurant..." type="text" value="Urban Bites" autocomplete="off">
+</div>
+<div id="rest-b-autocomplete" class="absolute left-0 right-0 mt-1 bg-white border border-outline-variant/30 rounded-xl shadow-lg hidden z-30 max-h-60 overflow-y-auto"></div>
+</div>
+<div class="col-span-1 md:col-span-3 flex justify-center mt-stack-md">
+<button id="compare-btn" class="w-full sm:w-auto bg-primary-container text-on-primary-container font-headline-sm text-headline-sm px-12 py-4 rounded-full shadow-lg hover:scale-[1.02] active:scale-95 transition-all duration-200">
+                    Compare Restaurants
+                </button>
+</div>
+</section>
+<!-- Detailed Comparison Table -->
+<section class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-x-auto w-full mb-stack-lg">
+<div class="min-w-[750px]">
+<!-- Table Header (Images/Names) -->
+<div class="grid grid-cols-[1.5fr_1fr_1fr] border-b border-outline-variant/20">
+<div class="p-gutter flex items-center">
+<h2 class="font-headline-md text-headline-md text-on-surface">Side-by-Side Comparison</h2>
+</div>
+<div class="p-gutter text-center border-l border-outline-variant/20">
+<div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
+<img id="img-a" class="w-full h-full object-cover" data-alt="A bustling restaurant serving authentic Andhra style biryani" src="images/food_image_4.jpg">
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface block"><a id="name-a" href="details.html" class="hover:text-primary transition-colors">Spice Garden</a></span>
+<span class="text-label-md text-secondary uppercase">Restaurant A</span>
+</div>
+<div class="p-gutter text-center border-l border-outline-variant/20">
+<div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
+<img id="img-b" class="w-full h-full object-cover" data-alt="Gourmet grill selections and vibrant setup" src="images/food_image_3.jpg">
+</div>
+<span id="name-b" class="font-headline-sm text-headline-sm text-on-surface block">Urban Bites</span>
+<span class="text-label-md text-secondary uppercase">Restaurant B</span>
+</div>
+</div>
+<!-- Row: Rating -->
+<div class="grid grid-cols-[1.5fr_1fr_1fr] border-b border-outline-variant/10 hover:bg-surface-container-low transition-colors group">
+<div class="p-gutter flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">star</span>
+<span class="font-body-lg text-body-lg text-secondary">Expert &amp; User Rating</span>
+</div>
+<div id="rating-td-a" class="p-gutter text-center border-l border-outline-variant/10 flex flex-col justify-center items-center bg-primary-container/[0.03]">
+<div class="flex items-center gap-1 text-primary mb-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span id="rating-val-a" class="font-bold text-headline-sm">4.8</span>
+</div>
+<span id="rating-winner-a" class="text-label-md text-primary font-bold">WINNER</span>
+</div>
+<div id="rating-td-b" class="p-gutter text-center border-l border-outline-variant/10 flex flex-col justify-center items-center">
+<div class="flex items-center gap-1 text-secondary mb-1">
+<span class="material-symbols-outlined">star</span>
+<span id="rating-val-b" class="font-bold text-headline-sm">4.5</span>
+</div>
+<span id="rating-winner-b" class="text-label-md text-primary font-bold hidden">WINNER</span>
+</div>
+</div>
+<!-- Row: Cuisine -->
+<div class="grid grid-cols-[1.5fr_1fr_1fr] border-b border-outline-variant/10 hover:bg-surface-container-low transition-colors">
+<div class="p-gutter flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">restaurant_menu</span>
+<span class="font-body-lg text-body-lg text-secondary">Primary Cuisine</span>
+</div>
+<div class="p-gutter text-center border-l border-outline-variant/10">
+<span id="cuisine-val-a" class="inline-block bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full font-label-md">Andhra Style, Biryani</span>
+</div>
+<div class="p-gutter text-center border-l border-outline-variant/10">
+<span id="cuisine-val-b" class="inline-block bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full font-label-md">Mughlai, North Indian</span>
+</div>
+</div>
+<!-- Row: Type -->
+<div class="grid grid-cols-[1.5fr_1fr_1fr] border-b border-outline-variant/10 hover:bg-surface-container-low transition-colors">
+<div class="p-gutter flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">dining</span>
+<span class="font-body-lg text-body-lg text-secondary">Dining Style</span>
+</div>
+<div class="p-gutter text-center border-l border-outline-variant/10">
+<span id="type-val-a" class="font-body-md text-on-surface">Casual Dining</span>
+</div>
+<div class="p-gutter text-center border-l border-outline-variant/10">
+<span id="type-val-b" class="font-body-md text-on-surface">Casual Dining</span>
+</div>
+</div>
+<!-- Row: Area -->
+<div class="grid grid-cols-[1.5fr_1fr_1fr] border-b border-outline-variant/10 hover:bg-surface-container-low transition-colors">
+<div class="p-gutter flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">location_on</span>
+<span class="font-body-lg text-body-lg text-secondary">Location / Area</span>
+</div>
+<div class="p-gutter text-center border-l border-outline-variant/10">
+<span id="loc-val-a" class="font-body-md text-on-surface">Koramangala, Bengaluru</span>
+</div>
+<div class="p-gutter text-center border-l border-outline-variant/10">
+<span id="loc-val-b" class="font-body-md text-on-surface">Bandra, Mumbai</span>
+</div>
+</div>
+<!-- Row: Cost for Two -->
+<div class="grid grid-cols-[1.5fr_1fr_1fr] border-b border-outline-variant/10 hover:bg-surface-container-low transition-colors">
+<div class="p-gutter flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">payments</span>
+<span class="font-body-lg text-body-lg text-secondary">Avg. Cost for Two</span>
+</div>
+<div id="cost-td-a" class="p-gutter text-center border-l border-outline-variant/10 bg-primary-container/[0.03]">
+<div id="cost-val-a" class="font-bold text-headline-sm text-primary">₹800.00</div>
+<span id="cost-winner-a" class="text-label-md text-primary font-bold">WINNER (VALUE)</span>
+</div>
+<div id="cost-td-b" class="p-gutter text-center border-l border-outline-variant/10">
+<div id="cost-val-b" class="font-body-md text-on-surface">₹950.00</div>
+<span id="cost-winner-b" class="text-label-md text-primary font-bold hidden">WINNER (VALUE)</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Summary Cards -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-stack-lg">
+<!-- Better Rated -->
+<div class="bg-surface-container-lowest p-gutter rounded-xl shadow-sm border-l-4 border-primary-container flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-3">star_half</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Better Rated</h3>
+<p class="font-body-md text-body-md text-secondary mb-4">Higher Guest Satisfaction</p>
+<div id="better-rated-winner" class="text-primary font-bold font-headline-md text-headline-md">Spice Garden</div>
+<div id="better-rated-details" class="text-label-md text-outline mt-1">4.8 vs 4.5 stars</div>
+</div>
+<!-- Better Value -->
+<div class="bg-surface-container-lowest p-gutter rounded-xl shadow-sm border-l-4 border-primary-container flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-3">payments</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Better Value</h3>
+<p class="font-body-md text-body-md text-secondary mb-4">Quality Experience / Cost</p>
+<div id="better-value-winner" class="text-primary font-bold font-headline-md text-headline-md">Urban Bites</div>
+<div id="better-value-details" class="text-label-md text-outline mt-1">₹800 vs ₹950 avg.</div>
+</div>
+<!-- Overall Winner -->
+<div class="bg-primary-container text-on-primary-container p-gutter rounded-xl shadow-xl flex flex-col items-center text-center winner-glow">
+<span class="material-symbols-outlined text-4xl mb-3" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<h3 class="font-headline-sm text-headline-sm mb-1">Overall Winner</h3>
+<p id="overall-winner-desc" class="font-body-md text-body-md opacity-90 mb-4">Top Choice for Spice Lovers</p>
+<div id="overall-winner-name" class="font-bold font-headline-md text-headline-md">Spice Garden</div>
+<div id="overall-winner-badge" class="bg-white/20 px-3 py-1 rounded-full text-label-md mt-2">Legendary Status</div>
+</div>
+</section>
+<!-- Final Verdict Call to Action -->
+
+</main>
+
+<!-- ===== Site Footer ===== -->
+<!-- ===== Site Footer ===== -->
+<footer class="bg-[#1a0c0b] text-white pb-20 md:pb-0">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-16 py-12 flex flex-col items-center text-center gap-4">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings:'FILL' 1;">restaurant</span>
+      <span class="text-2xl font-black tracking-tight text-white">FlavourMatch</span>
+    </a>
+    <p class="text-sm text-white/60 max-w-md leading-relaxed">
+      India's finest restaurant discovery platform. Find, compare and savour the best culinary experiences near you.
+    </p>
+    <p class="text-xs text-white/40 mt-2">
+      &copy; 2026 FlavourMatch. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 flex md:hidden justify-around items-center px-4 py-2 pb-safe bg-surface/90 dark:bg-surface-dim/90 backdrop-blur-xl rounded-t-xl shadow-[0_-4px_20px_0_rgba(0,0,0,0.05)] border-t border-outline-variant/30">
+<a href="index.html" class="flex flex-col items-center justify-center text-secondary">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a href="discover.html" class="flex flex-col items-center justify-center text-secondary">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-md text-label-md">Discover</span>
+</a>
+<a href="compare.html" class="flex flex-col items-center justify-center text-primary bg-primary-container/10 rounded-full px-4 py-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">compare_arrows</span>
+<span class="font-label-md text-label-md">Compare</span>
+</a>
+</nav>
+<script src="restaurants.js"></script>
+<script>
+        const autocompleteA = document.getElementById('rest-a-autocomplete');
+        const autocompleteB = document.getElementById('rest-b-autocomplete');
+        const inputA = document.getElementById('rest-a-input');
+        const inputB = document.getElementById('rest-b-input');
+
+        function setupAutocomplete(input, autocomplete, otherInput) {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('shadow-md', 'scale-[1.01]');
+            });
+            input.addEventListener('blur', function() {
+                this.parentElement.classList.remove('shadow-md', 'scale-[1.01]');
+            });
+
+            input.addEventListener('input', () => {
+                const query = input.value.toLowerCase().trim();
+                autocomplete.innerHTML = '';
+                if (!query) {
+                    autocomplete.classList.add('hidden');
+                    return;
+                }
+                const filtered = restaurants.filter(r => r.name.toLowerCase().includes(query) && r.name.toLowerCase() !== otherInput.value.toLowerCase().trim());
+                if (filtered.length === 0) {
+                    autocomplete.classList.add('hidden');
+                    return;
+                }
+                filtered.forEach(r => {
+                    const div = document.createElement('div');
+                    div.className = 'px-4 py-3 hover:bg-surface-container-low cursor-pointer font-body-md text-on-surface border-b border-outline-variant/10 last:border-0';
+                    div.textContent = r.name;
+                    div.addEventListener('mousedown', (e) => {
+                        e.preventDefault(); // Prevent blur from closing before click
+                        input.value = r.name;
+                        autocomplete.classList.add('hidden');
+                        compare();
+                    });
+                    autocomplete.appendChild(div);
+                });
+                autocomplete.classList.remove('hidden');
+            });
+
+            // Close on blur
+            input.addEventListener('blur', () => {
+                setTimeout(() => autocomplete.classList.add('hidden'), 200);
+            });
+        }
+
+        setupAutocomplete(inputA, autocompleteA, inputB);
+        setupAutocomplete(inputB, autocompleteB, inputA);
+
+        function compare() {
+            const nameA = inputA.value.trim();
+            const nameB = inputB.value.trim();
+
+            const restA = restaurants.find(r => r.name.toLowerCase() === nameA.toLowerCase());
+            const restB = restaurants.find(r => r.name.toLowerCase() === nameB.toLowerCase());
+
+            if (!restA || !restB) return;
+
+            // 1. Update Header Images & Names
+            document.getElementById('img-a').src = restA.image;
+            document.getElementById('img-a').alt = restA.name;
+            document.getElementById('name-a').textContent = restA.name;
+            if (restA.name === "Spice Garden" || restA.name === "Taste Hub Vegetarian") {
+                document.getElementById('name-a').href = "details.html";
+            } else {
+                document.getElementById('name-a').href = "discover.html";
+            }
+
+            document.getElementById('img-b').src = restB.image;
+            document.getElementById('img-b').alt = restB.name;
+            
+            if (restB.name === "Spice Garden" || restB.name === "Taste Hub Vegetarian") {
+                document.getElementById('name-b').innerHTML = `<a href="details.html" class="hover:text-primary transition-colors">${restB.name}</a>`;
+            } else {
+                document.getElementById('name-b').innerHTML = `<a href="discover.html" class="hover:text-primary transition-colors">${restB.name}</a>`;
+            }
+
+            // 2. Update Ratings Row
+            document.getElementById('rating-val-a').textContent = restA.rating;
+            document.getElementById('rating-val-b').textContent = restB.rating;
+
+            const ratingTdA = document.getElementById('rating-td-a');
+            const ratingTdB = document.getElementById('rating-td-b');
+            const ratingWinnerA = document.getElementById('rating-winner-a');
+            const ratingWinnerB = document.getElementById('rating-winner-b');
+
+            ratingTdA.className = "p-gutter text-center border-l border-outline-variant/10 flex flex-col justify-center items-center";
+            ratingTdB.className = "p-gutter text-center border-l border-outline-variant/10 flex flex-col justify-center items-center";
+            ratingWinnerA.classList.add('hidden');
+            ratingWinnerB.classList.add('hidden');
+
+            const ratingValA = document.querySelector('#rating-val-a').parentElement;
+            const ratingValB = document.querySelector('#rating-val-b').parentElement;
+            ratingValA.className = "flex items-center gap-1 text-secondary mb-1";
+            ratingValB.className = "flex items-center gap-1 text-secondary mb-1";
+
+            if (restA.rating > restB.rating) {
+                ratingTdA.classList.add('bg-primary-container/[0.03]');
+                ratingWinnerA.classList.remove('hidden');
+                ratingValA.className = "flex items-center gap-1 text-primary mb-1";
+            } else if (restB.rating > restA.rating) {
+                ratingTdB.classList.add('bg-primary-container/[0.03]');
+                ratingWinnerB.classList.remove('hidden');
+                ratingValB.className = "flex items-center gap-1 text-primary mb-1";
+            }
+
+            // 3. Update Cuisine Row
+            document.getElementById('cuisine-val-a').textContent = restA.cuisine;
+            document.getElementById('cuisine-val-b').textContent = restB.cuisine;
+
+            // 4. Update Type Row
+            document.getElementById('type-val-a').textContent = restA.type;
+            document.getElementById('type-val-b').textContent = restB.type;
+
+            // 5. Update Location Row
+            document.getElementById('loc-val-a').textContent = `${restA.area}, ${restA.city}`;
+            document.getElementById('loc-val-b').textContent = `${restB.area}, ${restB.city}`;
+
+            // 6. Update Average Cost Row
+            document.getElementById('cost-val-a').textContent = `₹${restA.cost}`;
+            document.getElementById('cost-val-b').textContent = `₹${restB.cost}`;
+
+            const costTdA = document.getElementById('cost-td-a');
+            const costTdB = document.getElementById('cost-td-b');
+            const costWinnerA = document.getElementById('cost-winner-a');
+            const costWinnerB = document.getElementById('cost-winner-b');
+
+            costTdA.className = "p-gutter text-center border-l border-outline-variant/10";
+            costTdB.className = "p-gutter text-center border-l border-outline-variant/10";
+            costWinnerA.classList.add('hidden');
+            costWinnerB.classList.add('hidden');
+            
+            document.getElementById('cost-val-a').className = "font-body-md text-on-surface";
+            document.getElementById('cost-val-b').className = "font-body-md text-on-surface";
+
+            if (restA.cost < restB.cost) {
+                costTdA.classList.add('bg-primary-container/[0.03]');
+                costWinnerA.classList.remove('hidden');
+                document.getElementById('cost-val-a').className = "font-bold text-headline-sm text-primary";
+            } else if (restB.cost < restA.cost) {
+                costTdB.classList.add('bg-primary-container/[0.03]');
+                costWinnerB.classList.remove('hidden');
+                document.getElementById('cost-val-b').className = "font-bold text-headline-sm text-primary";
+            }
+
+
+
+            // 8. Update Summary Cards
+            // Better Rated
+            const betterRatedWinner = document.getElementById('better-rated-winner');
+            const betterRatedDetails = document.getElementById('better-rated-details');
+            if (restA.rating > restB.rating) {
+                betterRatedWinner.textContent = restA.name;
+                betterRatedDetails.textContent = `${restA.rating} vs ${restB.rating} stars`;
+            } else if (restB.rating > restA.rating) {
+                betterRatedWinner.textContent = restB.name;
+                betterRatedDetails.textContent = `${restB.rating} vs ${restA.rating} stars`;
+            } else {
+                betterRatedWinner.textContent = "It's a Tie!";
+                betterRatedDetails.textContent = `Both rated ${restA.rating} stars`;
+            }
+
+            // Better Value
+            const betterValueWinner = document.getElementById('better-value-winner');
+            const betterValueDetails = document.getElementById('better-value-details');
+            if (restA.cost < restB.cost) {
+                betterValueWinner.textContent = restA.name;
+                betterValueDetails.textContent = `₹${restA.cost} vs ₹${restB.cost} avg.`;
+            } else if (restB.cost < restA.cost) {
+                betterValueWinner.textContent = restB.name;
+                betterValueDetails.textContent = `₹${restB.cost} vs ₹${restA.cost} avg.`;
+            } else {
+                betterValueWinner.textContent = "It's a Tie!";
+                betterValueDetails.textContent = `Both cost ₹${restA.cost} avg.`;
+            }
+
+            // Overall Winner
+            const overallWinnerName = document.getElementById('overall-winner-name');
+            const overallWinnerDesc = document.getElementById('overall-winner-desc');
+            const overallWinnerBadge = document.getElementById('overall-winner-badge');
+            
+            let overallWinner = restA;
+            if (restA.rating > restB.rating) {
+                overallWinner = restA;
+            } else if (restB.rating > restA.rating) {
+                overallWinner = restB;
+            } else {
+                // If rating is tie, value determines overall winner
+                overallWinner = restA.cost < restB.cost ? restA : restB;
+            }
+
+            overallWinnerName.textContent = overallWinner.name;
+            overallWinnerDesc.textContent = overallWinner.verdict;
+            overallWinnerBadge.textContent = overallWinner.rating >= 4.7 ? "Legendary Status" : "Top Choice";
+
+
+        }
+
+        // Parse URL Query Parameters
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const aParam = params.get('a');
+            const bParam = params.get('b');
+
+            if (aParam) {
+                const rest = restaurants.find(r => r.name.toLowerCase() === aParam.toLowerCase());
+                if (rest) inputA.value = rest.name;
+            }
+            if (bParam) {
+                const rest = restaurants.find(r => r.name.toLowerCase() === bParam.toLowerCase());
+                if (rest) inputB.value = rest.name;
+            }
+
+            compare();
+        });
+
+        // Click event on Compare Button
+        document.getElementById('compare-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            compare();
+        });
+
+        // Hover effect for comparison rows
+        const rows = document.querySelectorAll('.grid-cols-\\[1\\.5fr_1fr_1fr\\]');
+        rows.forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.querySelector('.text-outline')?.classList.replace('text-outline', 'text-primary');
+            });
+            row.addEventListener('mouseleave', () => {
+                row.querySelector('.text-primary')?.classList.replace('text-primary', 'text-outline');
+            });
+        });
+    </script>
+</body></html>
