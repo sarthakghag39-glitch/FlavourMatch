@@ -1685,12 +1685,13 @@
                     // Previous Page Button
                     const prevBtn = document.createElement('button');
                     prevBtn.id = 'prev-page-btn';
-                    prevBtn.className = `flex items-center gap-1 px-3 py-1.5 rounded-lg font-bold text-xs transition-all duration-200 shadow-sm border ${
-                        currentPage === 1 
-                            ? 'bg-slate-50 text-slate-300 cursor-not-allowed border-slate-200 pointer-events-none' 
-                            : 'bg-white hover:bg-slate-100 border-slate-200 text-secondary hover:text-primary cursor-pointer active:scale-95'
+                    const isPrevDisabled = currentPage === 1;
+                    prevBtn.className = `flex items-center justify-center w-12 h-10 rounded-lg transition-all duration-200 border ${
+                        isPrevDisabled 
+                            ? 'bg-[#121214] text-[#3f3f46] border-[#27272a] cursor-not-allowed pointer-events-none' 
+                            : 'bg-[#18181b] text-white border-[#2d2d30] hover:bg-[#ff9f1c] hover:text-[#0f0f11] hover:border-[#ff9f1c] cursor-pointer active:scale-95'
                     }`;
-                    prevBtn.innerHTML = `← Previous`;
+                    prevBtn.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>`;
                     if (currentPage > 1) {
                         prevBtn.addEventListener('click', (e) => {
                             e.preventDefault();
@@ -1711,10 +1712,10 @@
                     const createPageNumBtn = (pageNum) => {
                         const btn = document.createElement('button');
                         const isActive = pageNum === currentPage;
-                        btn.className = `px-3.5 py-1.5 rounded-lg font-bold text-xs transition-all duration-200 cursor-pointer border ${
+                        btn.className = `w-10 h-10 flex items-center justify-center rounded-lg font-bold text-sm transition-all duration-200 cursor-pointer border ${
                             isActive 
-                                ? 'bg-primary text-on-primary border-primary shadow-sm' 
-                                : 'bg-white hover:bg-slate-100 border-slate-200 text-secondary hover:text-primary'
+                                ? 'bg-[#ff9f1c] text-[#0f0f11] border-[#ff9f1c] font-black shadow-md' 
+                                : 'bg-[#18181b] text-[#eaeaea] border-[#2d2d30] hover:bg-[#ff9f1c] hover:text-[#0f0f11] hover:border-[#ff9f1c]'
                         }`;
                         btn.textContent = pageNum;
                         btn.addEventListener('click', (e) => {
@@ -1746,7 +1747,7 @@
                     
                     if (startPage > 2) {
                         const ell = document.createElement('span');
-                        ell.className = 'px-1.5 text-slate-400 font-bold text-xs select-none';
+                        ell.className = 'w-10 h-10 flex items-center justify-center text-slate-400 font-bold text-sm select-none';
                         ell.textContent = '...';
                         paginationControls.appendChild(ell);
                     }
@@ -1757,7 +1758,7 @@
                     
                     if (endPage < totalPages - 1) {
                         const ell = document.createElement('span');
-                        ell.className = 'px-1.5 text-slate-400 font-bold text-xs select-none';
+                        ell.className = 'w-10 h-10 flex items-center justify-center text-slate-400 font-bold text-sm select-none';
                         ell.textContent = '...';
                         paginationControls.appendChild(ell);
                     }
@@ -1769,12 +1770,13 @@
                     // Next Page Button
                     const nextBtn = document.createElement('button');
                     nextBtn.id = 'next-page-btn';
-                    nextBtn.className = `flex items-center gap-1 px-3 py-1.5 rounded-lg font-bold text-xs transition-all duration-200 shadow-sm border ${
-                        currentPage === totalPages 
-                            ? 'bg-slate-50 text-slate-300 cursor-not-allowed border-slate-200 pointer-events-none' 
-                            : 'bg-white hover:bg-slate-100 border-slate-200 text-secondary hover:text-primary cursor-pointer active:scale-95'
+                    const isNextDisabled = currentPage === totalPages;
+                    nextBtn.className = `flex items-center justify-center w-12 h-10 rounded-lg transition-all duration-200 border ${
+                        isNextDisabled 
+                            ? 'bg-[#121214] text-[#3f3f46] border-[#27272a] cursor-not-allowed pointer-events-none' 
+                            : 'bg-[#ff9f1c] text-[#0f0f11] border-[#ff9f1c] hover:bg-[#ffa62b] cursor-pointer active:scale-95'
                     }`;
-                    nextBtn.innerHTML = `Next →`;
+                    nextBtn.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>`;
                     if (currentPage < totalPages) {
                         nextBtn.addEventListener('click', (e) => {
                             e.preventDefault();
