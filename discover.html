@@ -1689,8 +1689,8 @@
                     const isPrevDisabled = currentPage === 1;
                     prevBtn.className = `flex items-center justify-center w-12 h-10 rounded-lg transition-all duration-200 border ${
                         isPrevDisabled 
-                            ? 'bg-[#121214] text-[#3f3f46] border-[#27272a] cursor-not-allowed pointer-events-none' 
-                            : 'bg-[#18181b] text-white border-[#2d2d30] hover:bg-[#ff9f1c] hover:text-[#0f0f11] hover:border-[#ff9f1c] cursor-pointer active:scale-95'
+                            ? 'bg-slate-50 text-slate-300 border-slate-200 cursor-not-allowed pointer-events-none' 
+                            : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50 hover:text-[#da3527] hover:border-[#da3527] cursor-pointer active:scale-95'
                     }`;
                     prevBtn.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>`;
                     if (currentPage > 1) {
@@ -1715,8 +1715,8 @@
                         const isActive = pageNum === currentPage;
                         btn.className = `w-10 h-10 flex items-center justify-center rounded-lg font-bold text-sm transition-all duration-200 cursor-pointer border ${
                             isActive 
-                                ? 'bg-[#ff9f1c] text-[#0f0f11] border-[#ff9f1c] font-black shadow-md' 
-                                : 'bg-[#18181b] text-[#eaeaea] border-[#2d2d30] hover:bg-[#ff9f1c] hover:text-[#0f0f11] hover:border-[#ff9f1c]'
+                                ? 'bg-[#da3527] text-white border-[#da3527] font-black shadow-sm' 
+                                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50 hover:text-[#da3527] hover:border-[#da3527]'
                         }`;
                         btn.textContent = pageNum;
                         btn.addEventListener('click', (e) => {
@@ -1774,8 +1774,8 @@
                     const isNextDisabled = currentPage === totalPages;
                     nextBtn.className = `flex items-center justify-center w-12 h-10 rounded-lg transition-all duration-200 border ${
                         isNextDisabled 
-                            ? 'bg-[#121214] text-[#3f3f46] border-[#27272a] cursor-not-allowed pointer-events-none' 
-                            : 'bg-[#ff9f1c] text-[#0f0f11] border-[#ff9f1c] hover:bg-[#ffa62b] cursor-pointer active:scale-95'
+                            ? 'bg-slate-50 text-slate-300 border-slate-200 cursor-not-allowed pointer-events-none' 
+                            : 'bg-[#da3527] text-white border-[#da3527] hover:bg-[#a0120b] cursor-pointer active:scale-95'
                     }`;
                     nextBtn.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>`;
                     if (currentPage < totalPages) {
