@@ -159,9 +159,9 @@
     </div>
     <p id="search-summary-desc" class="text-secondary font-body-sm">Explore our top culinary destinations nationwide.</p>
   </div>
-  <div class="flex flex-wrap gap-4 items-end w-full md:w-auto">
+  <div class="flex flex-nowrap gap-3 items-end w-full md:w-auto">
     <!-- Area / Locality Search Group -->
-    <div class="flex flex-col gap-1.5 min-w-[260px] max-w-full relative flex-1 sm:flex-initial">
+    <div class="flex flex-col gap-1.5 min-w-[150px] relative flex-1">
       <label for="locality-input" class="text-[11px] font-bold text-secondary uppercase tracking-widest">Area / Locality</label>
       <div class="relative flex items-center bg-white border border-slate-200 rounded-lg focus-within:border-[#da3527]/50 focus-within:ring-1 focus-within:ring-[#da3527]/20 transition-all px-3 py-2 shadow-sm">
         <span class="material-symbols-outlined text-slate-400 mr-2 text-[18px]">location_on</span>
@@ -171,12 +171,12 @@
     </div>
     
     <!-- Action Buttons -->
-    <div class="flex items-center gap-2 w-full sm:w-auto">
-      <button id="locality-search-btn" class="flex-1 sm:flex-initial bg-primary hover:bg-[#a0120b] text-on-primary font-bold px-6 py-2.5 rounded-lg active:scale-95 transition-all text-sm shadow-sm cursor-pointer inline-flex items-center justify-center gap-1.5 border border-transparent">
+    <div class="flex items-center gap-2 flex-shrink-0">
+      <button id="locality-search-btn" class="bg-primary hover:bg-[#a0120b] text-on-primary font-bold px-6 py-2.5 rounded-lg active:scale-95 transition-all text-sm shadow-sm cursor-pointer inline-flex items-center justify-center gap-1.5 border border-transparent">
         <span class="material-symbols-outlined text-base">search</span>
         Search
       </button>
-      <button id="edit-filters-btn" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-slate-200 text-secondary bg-white hover:bg-slate-50 transition-all font-bold active:scale-95 text-sm whitespace-nowrap cursor-pointer select-none">
+      <button id="edit-filters-btn" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-slate-200 text-secondary bg-white hover:bg-slate-50 transition-all font-bold active:scale-95 text-sm whitespace-nowrap cursor-pointer select-none">
         <span class="material-symbols-outlined text-base">filter_list</span>
         Edit Filters
       </button>
