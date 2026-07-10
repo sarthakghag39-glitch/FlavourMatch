@@ -1675,7 +1675,10 @@
 
             // 7. Render Pagination Page Controls
             const paginationControls = document.getElementById('pagination-controls');
+            console.log("DEBUG: paginationControls element:", paginationControls);
             if (paginationControls) {
+                console.log("DEBUG: paginationControls parent:", paginationControls.parentElement);
+                console.log("DEBUG: totalPages:", totalPages, "currentPage:", currentPage);
                 paginationControls.innerHTML = '';
                 if (totalPages <= 1) {
                     paginationControls.classList.add('hidden');
