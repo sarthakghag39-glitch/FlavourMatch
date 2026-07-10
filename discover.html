@@ -307,9 +307,12 @@
 <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-secondary">expand_more</span>
 </div>
 <!-- Page Size Selector -->
-<div class="relative flex-1 md:flex-none hidden">
+<div class="relative flex-1 md:flex-none">
 <select id="per-page-select" class="w-full md:w-36 pl-4 pr-10 py-2 bg-surface-container-high border-none rounded-lg focus:ring-2 focus:ring-primary outline-none appearance-none font-label-md text-on-surface">
 <option value="12" selected>12 per page</option>
+<option value="24">24 per page</option>
+<option value="50">50 per page</option>
+<option value="100">100 per page</option>
 </select>
 <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-secondary">expand_more</span>
 </div>
@@ -1086,6 +1089,8 @@
             } catch (error) {
                 console.warn("Client CSV query failed, falling back to hosted API query:", error);
                 try {
+                    const perPageSelectEl = document.getElementById('per-page-select');
+                    const perPageVal = perPageSelectEl ? parseInt(perPageSelectEl.value) || 12 : 12;
                     const requestData = {
                         city: cityVal,
                         location: areaVal,
@@ -1094,7 +1099,7 @@
                         min_rating: minRating === 'below-3' ? 0.0 : minRating,
                         restaurant_type: typeVal,
                         page: currentPage,
-                        per_page: 12,
+                        per_page: perPageVal,
                         name: nameQueryVal,
                         q: nameQueryVal
                     };
@@ -1203,6 +1208,13 @@
         function renderRestaurantCards(restaurantsList, clientSide = true) {
             allLoadedRestaurants = restaurantsList || [];
             paginateClientSide = clientSide;
+            
+            const perPageSelectEl = document.getElementById('per-page-select');
+            if (perPageSelectEl) {
+                pageSize = parseInt(perPageSelectEl.value) || 12;
+            } else {
+                pageSize = 12;
+            }
             
             if (clientSide) {
                 totalResults = allLoadedRestaurants.length;
@@ -1487,7 +1499,12 @@
             });
 
             // 2. Pagination Size
-            pageSize = 12;
+            const perPageSelectEl = document.getElementById('per-page-select');
+            if (perPageSelectEl) {
+                pageSize = parseInt(perPageSelectEl.value) || 12;
+            } else {
+                pageSize = 12;
+            }
 
             let pageData = [];
             let start = 0;
@@ -1932,7 +1949,13 @@
         if (perPageSelect) {
             perPageSelect.addEventListener('change', () => {
                 currentPage = 1;
-                sortAndRender();
+                if (!paginateClientSide) {
+                    fetchRecommendations(true);
+                } else {
+                    pageSize = parseInt(perPageSelect.value) || 12;
+                    totalPages = Math.ceil(totalResults / pageSize) || 1;
+                    sortAndRender();
+                }
             });
         }
 
