@@ -616,7 +616,8 @@
 </a>
 </div>
 </div>
-</div>
+</div> <!-- Close Card 6 -->
+</div> <!-- Close restaurants-grid -->
 <div class="mt-stack-lg flex flex-col items-center gap-4">
   <div id="pagination-controls" class="flex flex-wrap items-center justify-center gap-2 select-none"></div>
 </div>
@@ -1675,10 +1676,7 @@
 
             // 7. Render Pagination Page Controls
             const paginationControls = document.getElementById('pagination-controls');
-            console.log("DEBUG: paginationControls element:", paginationControls);
             if (paginationControls) {
-                console.log("DEBUG: paginationControls parent:", paginationControls.parentElement);
-                console.log("DEBUG: totalPages:", totalPages, "currentPage:", currentPage);
                 paginationControls.innerHTML = '';
                 if (totalPages <= 1) {
                     paginationControls.classList.add('hidden');
