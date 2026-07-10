@@ -119,16 +119,26 @@
 </head>
 <body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden min-h-screen relative w-full">
 <!-- TopAppBar -->
-<header class="bg-surface/80 backdrop-blur-md shadow-sm docked full-width top-0 sticky flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full z-50 transition-all duration-300 h-16">
-<div class="flex items-center gap-4">
+<header class="bg-surface/80 backdrop-blur-md shadow-sm docked full-width top-0 sticky flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full z-50 transition-all duration-300 h-16 gap-4">
+<div class="flex items-center gap-4 shrink-0">
 <button class="material-symbols-outlined text-primary hover:bg-surface-container-high transition-colors duration-200 p-2 rounded-full active:scale-95 hidden items-center justify-center h-10 w-10">menu</button>
 <a href="index.html" class="flex items-center gap-2">
 <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings:'FILL' 1;">restaurant</span>
 <span class="text-headline-md text-primary tracking-tight">FlavourMatch</span>
 </a>
 </div>
+
+<!-- Global Nav Search Bar -->
+<div class="relative flex-1 max-w-md mx-2 sm:mx-4">
+  <div class="relative flex items-center bg-slate-100 dark:bg-slate-800 border border-transparent focus-within:border-primary/25 focus-within:bg-white rounded-full px-3.5 py-1.5 transition-all shadow-inner">
+    <span class="material-symbols-outlined text-slate-400 mr-2 text-[18px]">search</span>
+    <input id="nav-search-input" class="bg-transparent border-none outline-none focus:ring-0 text-slate-700 dark:text-slate-200 font-body-sm w-full p-0" placeholder="Search restaurant or area..." type="text" autocomplete="off">
+  </div>
+  <div id="nav-search-autocomplete" class="absolute left-0 right-0 top-full mt-2 bg-white border border-outline-variant/30 rounded-xl shadow-lg hidden z-50 max-h-60 overflow-y-auto"></div>
+</div>
+
 <!-- Desktop Nav Center -->
-<nav class="hidden md:flex items-center gap-8">
+<nav class="hidden md:flex items-center gap-8 shrink-0">
 <a class="text-secondary text-label-md font-label-md hover:text-primary transition-colors duration-200" href="index.html">Home</a>
 <a class="text-secondary text-label-md font-label-md hover:text-primary transition-colors duration-200" href="discover.html">Discover</a>
 <a class="text-primary font-bold text-label-md font-label-md" href="compare.html">Compare</a>
@@ -143,7 +153,7 @@
 <label class="block font-label-md text-label-md text-secondary mb-2 uppercase tracking-widest">Restaurant A</label>
 <div class="flex items-center bg-surface-container-lowest border border-outline-variant/30 rounded-xl px-4 py-4 shadow-sm group-focus-within:border-primary-container transition-all">
 <span class="material-symbols-outlined text-outline mr-3">search</span>
-<input id="rest-a-input" class="bg-transparent border-none focus:ring-0 w-full font-body-md text-on-surface" placeholder="Search first restaurant..." type="text" value="Spice Garden" autocomplete="off">
+<input id="rest-a-input" class="bg-transparent border-none focus:ring-0 w-full font-body-md text-on-surface" placeholder="Search first restaurant..." type="text" value="" autocomplete="off">
 </div>
 <div id="rest-a-autocomplete" class="absolute left-0 right-0 mt-1 bg-white border border-outline-variant/30 rounded-xl shadow-lg hidden z-30 max-h-60 overflow-y-auto"></div>
 </div>
@@ -158,7 +168,7 @@
 <label class="block font-label-md text-label-md text-secondary mb-2 uppercase tracking-widest">Restaurant B</label>
 <div class="flex items-center bg-surface-container-lowest border border-outline-variant/30 rounded-xl px-4 py-4 shadow-sm group-focus-within:border-primary-container transition-all">
 <span class="material-symbols-outlined text-outline mr-3">search</span>
-<input id="rest-b-input" class="bg-transparent border-none focus:ring-0 w-full font-body-md text-on-surface" placeholder="Search second restaurant..." type="text" value="Urban Bites" autocomplete="off">
+<input id="rest-b-input" class="bg-transparent border-none focus:ring-0 w-full font-body-md text-on-surface" placeholder="Search second restaurant..." type="text" value="" autocomplete="off">
 </div>
 <div id="rest-b-autocomplete" class="absolute left-0 right-0 mt-1 bg-white border border-outline-variant/30 rounded-xl shadow-lg hidden z-30 max-h-60 overflow-y-auto"></div>
 </div>
@@ -168,8 +178,15 @@
                 </button>
 </div>
 </section>
+
+<!-- Error Alert Container -->
+<div id="compare-error" class="hidden w-full p-4 mb-stack-md rounded-xl bg-red-50 border border-red-200 text-red-700 font-bold text-center flex items-center justify-center gap-2 max-w-[1280px] mx-auto">
+  <span class="material-symbols-outlined text-red-600">error</span>
+  <span id="compare-error-text"></span>
+</div>
+
 <!-- Detailed Comparison Table -->
-<section class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-x-auto w-full mb-stack-lg">
+<section id="comparison-table-section" class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-x-auto w-full mb-stack-lg hidden">
 <div class="min-w-[750px]">
 <!-- Table Header (Images/Names) -->
 <div class="grid grid-cols-[1.5fr_1fr_1fr] border-b border-outline-variant/20">
@@ -177,15 +194,19 @@
 <h2 class="font-headline-md text-headline-md text-on-surface">Side-by-Side Comparison</h2>
 </div>
 <div class="p-gutter text-center border-l border-outline-variant/20">
-<div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
-<img id="img-a" class="w-full h-full object-cover" data-alt="A bustling restaurant serving authentic Andhra style biryani" src="images/food_image_4.jpg">
+<div id="img-a" class="w-full aspect-video rounded-lg overflow-hidden mb-4 flex flex-col justify-center items-center text-center p-4 select-none bg-gradient-to-br from-orange-400 to-amber-600 text-white">
+<div class="w-10 h-10 rounded-full bg-white/20 border-white/30 border-2 flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[24px] text-white">dinner_dining</span>
+</div>
 </div>
 <span class="font-headline-sm text-headline-sm text-on-surface block"><a id="name-a" href="details.html" class="hover:text-primary transition-colors">Spice Garden</a></span>
 <span class="text-label-md text-secondary uppercase">Restaurant A</span>
 </div>
 <div class="p-gutter text-center border-l border-outline-variant/20">
-<div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
-<img id="img-b" class="w-full h-full object-cover" data-alt="Gourmet grill selections and vibrant setup" src="images/food_image_3.jpg">
+<div id="img-b" class="w-full aspect-video rounded-lg overflow-hidden mb-4 flex flex-col justify-center items-center text-center p-4 select-none bg-gradient-to-br from-rose-500 to-red-700 text-white">
+<div class="w-10 h-10 rounded-full bg-white/20 border-white/30 border-2 flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[24px] text-white">restaurant</span>
+</div>
 </div>
 <span id="name-b" class="font-headline-sm text-headline-sm text-on-surface block">Urban Bites</span>
 <span class="text-label-md text-secondary uppercase">Restaurant B</span>
@@ -270,7 +291,7 @@
 </section>
 
 <!-- Summary Cards -->
-<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-stack-lg">
+<section id="comparison-summary-section" class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-stack-lg hidden">
 <!-- Better Rated -->
 <div class="bg-surface-container-lowest p-gutter rounded-xl shadow-sm border-l-4 border-primary-container flex flex-col items-center text-center">
 <span class="material-symbols-outlined text-primary text-4xl mb-3">star_half</span>
@@ -334,10 +355,219 @@
 </nav>
 <script src="restaurants.js"></script>
 <script>
+        const GRADIENT_THEMES = [
+            {
+                name: "orange",
+                classes: "bg-gradient-to-br from-orange-400 to-amber-600 text-white",
+                iconCircleBg: "bg-white/20 border-white/30",
+                badgeBg: "bg-white/25 text-white backdrop-blur-sm",
+                iconColor: "text-amber-600"
+            },
+            {
+                name: "red",
+                classes: "bg-gradient-to-br from-rose-500 to-red-700 text-white",
+                iconCircleBg: "bg-white/20 border-white/30",
+                badgeBg: "bg-white/25 text-white backdrop-blur-sm",
+                iconColor: "text-red-600"
+            },
+            {
+                name: "green",
+                classes: "bg-gradient-to-br from-emerald-500 to-green-700 text-white",
+                iconCircleBg: "bg-white/20 border-white/30",
+                badgeBg: "bg-white/25 text-white backdrop-blur-sm",
+                iconColor: "text-emerald-600"
+            },
+            {
+                name: "purple",
+                classes: "bg-gradient-to-br from-purple-500 to-indigo-700 text-white",
+                iconCircleBg: "bg-white/20 border-white/30",
+                badgeBg: "bg-white/25 text-white backdrop-blur-sm",
+                iconColor: "text-purple-600"
+            },
+            {
+                name: "blue",
+                classes: "bg-gradient-to-br from-blue-500 to-cyan-700 text-white",
+                iconCircleBg: "bg-white/20 border-white/30",
+                badgeBg: "bg-white/25 text-white backdrop-blur-sm",
+                iconColor: "text-blue-600"
+            },
+            {
+                name: "teal",
+                classes: "bg-gradient-to-br from-teal-400 to-cyan-600 text-white",
+                iconCircleBg: "bg-white/20 border-white/30",
+                badgeBg: "bg-white/25 text-white backdrop-blur-sm",
+                iconColor: "text-teal-600"
+            }
+        ];
+
+        function getGradientTheme(restaurantName) {
+            const nameClean = (restaurantName || "").toLowerCase().trim();
+            if (nameClean.includes("spice garden")) {
+                return GRADIENT_THEMES[0]; // orange
+            }
+            if (nameClean.includes("urban tadka") || nameClean.includes("urban bites")) {
+                return GRADIENT_THEMES[1]; // red
+            }
+            if (nameClean.includes("cafe aroma")) {
+                return GRADIENT_THEMES[2]; // green
+            }
+            if (nameClean.includes("dragon bowl")) {
+                return GRADIENT_THEMES[3]; // purple
+            }
+            if (nameClean.includes("burger house")) {
+                return GRADIENT_THEMES[4]; // blue
+            }
+            if (nameClean.includes("sweet stories")) {
+                return GRADIENT_THEMES[5]; // teal
+            }
+            
+            let hash = 0;
+            for (let i = 0; i < nameClean.length; i++) {
+                hash = nameClean.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            const index = Math.abs(hash) % GRADIENT_THEMES.length;
+            return GRADIENT_THEMES[index];
+        }
+
+        function getRestaurantIcon(type, cuisine) {
+            const t = (type || "").toLowerCase().trim();
+            const cList = (cuisine || "").toLowerCase().split(',').map(item => item.trim()).filter(Boolean);
+            const primary = cList[0] || "";
+            
+            if (primary.includes("burger")) {
+                return "lunch_dining";
+            }
+            if (primary.includes("pizza") || primary.includes("italian")) {
+                return "local_pizza";
+            }
+            if (primary.includes("ramen") || primary.includes("noodle") || primary.includes("chinese") || primary.includes("thai") || primary.includes("japanese") || primary.includes("momos") || primary.includes("tibetan") || primary.includes("asian")) {
+                return "ramen_dining";
+            }
+            if (primary.includes("dessert") || primary.includes("ice cream") || primary.includes("waffle") || primary.includes("sweet") || primary.includes("shake") || primary.includes("crepe")) {
+                return "icecream";
+            }
+            if (primary.includes("bakery") || primary.includes("cake") || primary.includes("bread") || primary.includes("pastry") || primary.includes("donut")) {
+                return "bakery_dining";
+            }
+            if (primary.includes("cafe") || primary.includes("coffee") || primary.includes("tea")) {
+                return "local_cafe";
+            }
+            if (primary.includes("european") || primary.includes("continental") || primary.includes("french") || primary.includes("mediterranean") || primary.includes("spanish")) {
+                return "dinner_dining";
+            }
+            if (primary.includes("north indian") || primary.includes("south indian") || primary.includes("biryani") || primary.includes("mughlai") || primary.includes("andhra") || primary.includes("indian") || primary.includes("kebab") || primary.includes("maharashtrian")) {
+                return "restaurant";
+            }
+            
+            const allCuisinesText = cList.join(" ");
+            
+            if (allCuisinesText.includes("dessert") || allCuisinesText.includes("ice cream") || allCuisinesText.includes("waffle") || allCuisinesText.includes("sweet") || t.includes("dessert") || t.includes("parlor")) {
+                return "icecream";
+            }
+            if (allCuisinesText.includes("bakery") || allCuisinesText.includes("cake") || t.includes("bakery")) {
+                return "bakery_dining";
+            }
+            if (allCuisinesText.includes("burger") || allCuisinesText.includes("pizza") || allCuisinesText.includes("fast food") || t.includes("quick bites")) {
+                if (allCuisinesText.includes("south indian") || allCuisinesText.includes("dosa") || allCuisinesText.includes("idli")) {
+                    return "restaurant";
+                }
+                return "lunch_dining";
+            }
+            if (allCuisinesText.includes("ramen") || allCuisinesText.includes("noodle") || allCuisinesText.includes("chinese") || allCuisinesText.includes("thai") || allCuisinesText.includes("japanese") || allCuisinesText.includes("asian")) {
+                return "ramen_dining";
+            }
+            if (allCuisinesText.includes("cafe") || allCuisinesText.includes("coffee") || allCuisinesText.includes("tea") || t.includes("cafe")) {
+                return "local_cafe";
+            }
+            if (t.includes("fine dining") || t.includes("fine-dining") || t.includes("buffet") || t.includes("dinner") || allCuisinesText.includes("european") || allCuisinesText.includes("continental") || allCuisinesText.includes("italian")) {
+                return "dinner_dining";
+            }
+            
+            return "restaurant";
+        }
+
         const autocompleteA = document.getElementById('rest-a-autocomplete');
         const autocompleteB = document.getElementById('rest-b-autocomplete');
         const inputA = document.getElementById('rest-a-input');
         const inputB = document.getElementById('rest-b-input');
+        
+        const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:5000'
+            : 'https://restaurant-recommendation-api-xgvq.onrender.com';
+        let dbRestaurants = [];
+        let dbRestaurantNames = [];
+
+        function parseCSV(text) {
+            const lines = [];
+            let row = [""];
+            let inQuotes = false;
+
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                const nextChar = text[i + 1];
+
+                if (char === '"') {
+                    if (inQuotes && nextChar === '"') {
+                        row[row.length - 1] += '"';
+                        i++;
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                } else if (char === ',' && !inQuotes) {
+                    row.push('');
+                } else if ((char === '\r' || char === '\n') && !inQuotes) {
+                    if (char === '\r' && nextChar === '\n') {
+                        i++;
+                    }
+                    lines.push(row);
+                    row = [''];
+                } else {
+                    row[row.length - 1] += char;
+                }
+            }
+            if (row.length > 1 || row[0] !== '') {
+                lines.push(row);
+            }
+            
+            const headers = lines[0].map(h => h.trim().toLowerCase());
+            const objects = [];
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i];
+                if (line.length !== headers.length) continue;
+                const obj = {};
+                for (let j = 0; j < headers.length; j++) {
+                    obj[headers[j]] = line[j].trim();
+                }
+                objects.push(obj);
+            }
+            return objects;
+        }
+
+        async function loadRestaurantNames() {
+            try {
+                const response = await fetch('dataset/final_restaurants.csv');
+                if (response.ok) {
+                    const text = await response.text();
+                    dbRestaurants = parseCSV(text);
+                    const names = dbRestaurants.map(r => r["restaurant name"]);
+                    dbRestaurantNames = Array.from(new Set(names));
+                }
+            } catch (err) {
+                console.warn("Could not load CSV names, using remote autocomplete names:", err);
+                try {
+                    const response = await fetch(`${API_BASE_URL}/restaurants`);
+                    if (response.ok) {
+                        dbRestaurantNames = await response.json();
+                    }
+                } catch (apiErr) {
+                    console.error("Remote autocomplete names failed too:", apiErr);
+                }
+            }
+            
+            if (!dbRestaurantNames || dbRestaurantNames.length === 0) {
+                dbRestaurantNames = restaurants.map(r => r.name);
+            }
+        }
 
         function setupAutocomplete(input, autocomplete, otherInput) {
             input.addEventListener('focus', function() {
@@ -354,18 +584,18 @@
                     autocomplete.classList.add('hidden');
                     return;
                 }
-                const filtered = restaurants.filter(r => r.name.toLowerCase().includes(query) && r.name.toLowerCase() !== otherInput.value.toLowerCase().trim());
+                const filtered = dbRestaurantNames.filter(name => name.toLowerCase().includes(query) && name.toLowerCase() !== otherInput.value.toLowerCase().trim());
                 if (filtered.length === 0) {
                     autocomplete.classList.add('hidden');
                     return;
                 }
-                filtered.forEach(r => {
+                filtered.forEach(name => {
                     const div = document.createElement('div');
                     div.className = 'px-4 py-3 hover:bg-surface-container-low cursor-pointer font-body-md text-on-surface border-b border-outline-variant/10 last:border-0';
-                    div.textContent = r.name;
+                    div.textContent = name;
                     div.addEventListener('mousedown', (e) => {
-                        e.preventDefault(); // Prevent blur from closing before click
-                        input.value = r.name;
+                        e.preventDefault();
+                        input.value = name;
                         autocomplete.classList.add('hidden');
                         compare();
                     });
@@ -374,7 +604,6 @@
                 autocomplete.classList.remove('hidden');
             });
 
-            // Close on blur
             input.addEventListener('blur', () => {
                 setTimeout(() => autocomplete.classList.add('hidden'), 200);
             });
@@ -383,37 +612,139 @@
         setupAutocomplete(inputA, autocompleteA, inputB);
         setupAutocomplete(inputB, autocompleteB, inputA);
 
-        function compare() {
+        function showError(msg) {
+            const errorDiv = document.getElementById('compare-error');
+            const errorText = document.getElementById('compare-error-text');
+            if (errorDiv && errorText) {
+                errorText.textContent = msg;
+                errorDiv.classList.remove('hidden');
+            }
+            // Hide comparison sections
+            document.getElementById('comparison-table-section').classList.add('hidden');
+            document.getElementById('comparison-summary-section').classList.add('hidden');
+        }
+
+        function clearError() {
+            const errorDiv = document.getElementById('compare-error');
+            if (errorDiv) {
+                errorDiv.classList.add('hidden');
+            }
+        }
+
+        async function compare() {
             const nameA = inputA.value.trim();
             const nameB = inputB.value.trim();
 
-            const restA = restaurants.find(r => r.name.toLowerCase() === nameA.toLowerCase());
-            const restB = restaurants.find(r => r.name.toLowerCase() === nameB.toLowerCase());
-
-            if (!restA || !restB) return;
-
-            // 1. Update Header Images & Names
-            document.getElementById('img-a').src = restA.image;
-            document.getElementById('img-a').alt = restA.name;
-            document.getElementById('name-a').textContent = restA.name;
-            if (restA.name === "Spice Garden" || restA.name === "Taste Hub Vegetarian") {
-                document.getElementById('name-a').href = "details.html";
-            } else {
-                document.getElementById('name-a').href = "discover.html";
+            if (!nameA || !nameB) {
+                return; // Do nothing if either is empty
             }
 
-            document.getElementById('img-b').src = restB.image;
-            document.getElementById('img-b').alt = restB.name;
+            if (nameA.toLowerCase() === nameB.toLowerCase()) {
+                showError("Please choose two different restaurants.");
+                return;
+            }
+
+            const existsA = dbRestaurantNames.some(name => name.toLowerCase() === nameA.toLowerCase());
+            const existsB = dbRestaurantNames.some(name => name.toLowerCase() === nameB.toLowerCase());
             
-            if (restB.name === "Spice Garden" || restB.name === "Taste Hub Vegetarian") {
-                document.getElementById('name-b').innerHTML = `<a href="details.html" class="hover:text-primary transition-colors">${restB.name}</a>`;
-            } else {
-                document.getElementById('name-b').innerHTML = `<a href="discover.html" class="hover:text-primary transition-colors">${restB.name}</a>`;
+            if (!existsA || !existsB) {
+                showError("Restaurant not found.");
+                return;
             }
+
+            clearError();
+
+            let apiData = null;
+            try {
+                const response = await fetch(`${API_BASE_URL}/compare`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        restaurant1: nameA,
+                        restaurant2: nameB
+                    })
+                });
+
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        showError("Restaurant not found.");
+                    } else {
+                        showError("An error occurred during comparison.");
+                    }
+                    return;
+                }
+
+                apiData = await response.json();
+            } catch (err) {
+                console.error("Could not query compare API:", err);
+                showError("Connection to server failed. Please try again.");
+                return;
+            }
+
+            if (!apiData || !apiData.restaurant1 || !apiData.restaurant2) {
+                showError("Restaurant not found.");
+                return;
+            }
+
+            const r1 = apiData.restaurant1;
+            const r2 = apiData.restaurant2;
+            
+            const restA = {
+                name: r1["restaurant name"],
+                cuisine: r1["cuisines type"],
+                type: r1["restaurant type"],
+                rating: parseFloat(r1["rate (out of 5)"]) || 0.0,
+                cost: parseInt((r1["avg cost (two people)"] || "").toString().replace(/[^\d]/g, "")) || 0,
+                city: r1["city"],
+                area: r1["area"],
+                image: "images/food_image_3.jpg"
+            };
+
+            const restB = {
+                name: r2["restaurant name"],
+                cuisine: r2["cuisines type"],
+                type: r2["restaurant type"],
+                rating: parseFloat(r2["rate (out of 5)"]) || 0.0,
+                cost: parseInt((r2["avg cost (two people)"] || "").toString().replace(/[^\d]/g, "")) || 0,
+                city: r2["city"],
+                area: r2["area"],
+                image: "images/food_image_4.jpg"
+            };
+
+            const overallWinner = apiData.overall_winner;
+            const winnerRating = apiData.winner.rating;
+            const winnerBudget = apiData.winner.budget;
+            const verdict = overallWinner === "Tie" ? `Both restaurants offer an exceptional dining experience. ${restA.name} stands out for its rating, while ${restB.name} is better for budget.` : `Our algorithm recommends ${overallWinner} as the top choice.`;
+
+            // 1. Update Header Gradients & Names
+            const themeA = getGradientTheme(restA.name);
+            const iconA = getRestaurantIcon(restA.type, restA.cuisine);
+            const elA = document.getElementById('img-a');
+            elA.className = `w-full aspect-video rounded-lg overflow-hidden mb-4 flex flex-col justify-center items-center text-center p-4 select-none ${themeA.classes}`;
+            elA.innerHTML = `
+              <div class="w-10 h-10 rounded-full ${themeA.iconCircleBg} border-2 flex items-center justify-center shadow-sm">
+                <span class="material-symbols-outlined text-[24px] text-white">${iconA}</span>
+              </div>
+            `;
+            document.getElementById('name-a').textContent = restA.name;
+            document.getElementById('name-a').href = `details.html?name=${encodeURIComponent(restA.name)}&cuisine=${encodeURIComponent(restA.cuisine)}&type=${encodeURIComponent(restA.type)}&rating=${encodeURIComponent(restA.rating)}&cost=${encodeURIComponent(restA.cost)}&city=${encodeURIComponent(restA.city)}&area=${encodeURIComponent(restA.area)}`;
+
+            const themeB = getGradientTheme(restB.name);
+            const iconB = getRestaurantIcon(restB.type, restB.cuisine);
+            const elB = document.getElementById('img-b');
+            elB.className = `w-full aspect-video rounded-lg overflow-hidden mb-4 flex flex-col justify-center items-center text-center p-4 select-none ${themeB.classes}`;
+            elB.innerHTML = `
+              <div class="w-10 h-10 rounded-full ${themeB.iconCircleBg} border-2 flex items-center justify-center shadow-sm">
+                <span class="material-symbols-outlined text-[24px] text-white">${iconB}</span>
+              </div>
+            `;
+            document.getElementById('name-b').innerHTML = `<a href="details.html?name=${encodeURIComponent(restB.name)}&cuisine=${encodeURIComponent(restB.cuisine)}&type=${encodeURIComponent(restB.type)}&rating=${encodeURIComponent(restB.rating)}&cost=${encodeURIComponent(restB.cost)}&city=${encodeURIComponent(restB.city)}&area=${encodeURIComponent(restB.area)}" class="hover:text-primary transition-colors">${restB.name}</a>`;
 
             // 2. Update Ratings Row
-            document.getElementById('rating-val-a').textContent = restA.rating;
-            document.getElementById('rating-val-b').textContent = restB.rating;
+            document.getElementById('rating-val-a').textContent = restA.rating.toFixed(1);
+            document.getElementById('rating-val-b').textContent = restB.rating.toFixed(1);
 
             const ratingTdA = document.getElementById('rating-td-a');
             const ratingTdB = document.getElementById('rating-td-b');
@@ -430,11 +761,11 @@
             ratingValA.className = "flex items-center gap-1 text-secondary mb-1";
             ratingValB.className = "flex items-center gap-1 text-secondary mb-1";
 
-            if (restA.rating > restB.rating) {
+            if (winnerRating === restA.name) {
                 ratingTdA.classList.add('bg-primary-container/[0.03]');
                 ratingWinnerA.classList.remove('hidden');
                 ratingValA.className = "flex items-center gap-1 text-primary mb-1";
-            } else if (restB.rating > restA.rating) {
+            } else if (winnerRating === restB.name) {
                 ratingTdB.classList.add('bg-primary-container/[0.03]');
                 ratingWinnerB.classList.remove('hidden');
                 ratingValB.className = "flex items-center gap-1 text-primary mb-1";
@@ -469,40 +800,36 @@
             document.getElementById('cost-val-a').className = "font-body-md text-on-surface";
             document.getElementById('cost-val-b').className = "font-body-md text-on-surface";
 
-            if (restA.cost < restB.cost) {
+            if (winnerBudget === restA.name) {
                 costTdA.classList.add('bg-primary-container/[0.03]');
                 costWinnerA.classList.remove('hidden');
                 document.getElementById('cost-val-a').className = "font-bold text-headline-sm text-primary";
-            } else if (restB.cost < restA.cost) {
+            } else if (winnerBudget === restB.name) {
                 costTdB.classList.add('bg-primary-container/[0.03]');
                 costWinnerB.classList.remove('hidden');
                 document.getElementById('cost-val-b').className = "font-bold text-headline-sm text-primary";
             }
 
-
-
             // 8. Update Summary Cards
-            // Better Rated
             const betterRatedWinner = document.getElementById('better-rated-winner');
             const betterRatedDetails = document.getElementById('better-rated-details');
-            if (restA.rating > restB.rating) {
+            if (winnerRating === restA.name) {
                 betterRatedWinner.textContent = restA.name;
-                betterRatedDetails.textContent = `${restA.rating} vs ${restB.rating} stars`;
-            } else if (restB.rating > restA.rating) {
+                betterRatedDetails.textContent = `${restA.rating.toFixed(1)} vs ${restB.rating.toFixed(1)} stars`;
+            } else if (winnerRating === restB.name) {
                 betterRatedWinner.textContent = restB.name;
-                betterRatedDetails.textContent = `${restB.rating} vs ${restA.rating} stars`;
+                betterRatedDetails.textContent = `${restB.rating.toFixed(1)} vs ${restA.rating.toFixed(1)} stars`;
             } else {
                 betterRatedWinner.textContent = "It's a Tie!";
-                betterRatedDetails.textContent = `Both rated ${restA.rating} stars`;
+                betterRatedDetails.textContent = `Both rated ${restA.rating.toFixed(1)} stars`;
             }
 
-            // Better Value
             const betterValueWinner = document.getElementById('better-value-winner');
             const betterValueDetails = document.getElementById('better-value-details');
-            if (restA.cost < restB.cost) {
+            if (winnerBudget === restA.name) {
                 betterValueWinner.textContent = restA.name;
                 betterValueDetails.textContent = `₹${restA.cost} vs ₹${restB.cost} avg.`;
-            } else if (restB.cost < restA.cost) {
+            } else if (winnerBudget === restB.name) {
                 betterValueWinner.textContent = restB.name;
                 betterValueDetails.textContent = `₹${restB.cost} vs ₹${restA.cost} avg.`;
             } else {
@@ -515,39 +842,35 @@
             const overallWinnerDesc = document.getElementById('overall-winner-desc');
             const overallWinnerBadge = document.getElementById('overall-winner-badge');
             
-            let overallWinner = restA;
-            if (restA.rating > restB.rating) {
-                overallWinner = restA;
-            } else if (restB.rating > restA.rating) {
-                overallWinner = restB;
-            } else {
-                // If rating is tie, value determines overall winner
-                overallWinner = restA.cost < restB.cost ? restA : restB;
-            }
+            overallWinnerName.textContent = overallWinner === "Tie" ? "It's a Tie!" : overallWinner;
+            overallWinnerDesc.textContent = verdict;
+            overallWinnerBadge.textContent = (overallWinner === restA.name ? restA.rating : restB.rating) >= 4.6 ? "Legendary Status" : "Top Choice";
 
-            overallWinnerName.textContent = overallWinner.name;
-            overallWinnerDesc.textContent = overallWinner.verdict;
-            overallWinnerBadge.textContent = overallWinner.rating >= 4.7 ? "Legendary Status" : "Top Choice";
-
-
+            // Show comparison sections
+            document.getElementById('comparison-table-section').classList.remove('hidden');
+            document.getElementById('comparison-summary-section').classList.remove('hidden');
         }
 
-        // Parse URL Query Parameters
-        window.addEventListener('DOMContentLoaded', () => {
+        // Parse URL Query Parameters on load
+        window.addEventListener('DOMContentLoaded', async () => {
+            await loadRestaurantNames();
+            
             const params = new URLSearchParams(window.location.search);
-            const aParam = params.get('a');
-            const bParam = params.get('b');
+            const aParam = params.get('restaurant1') || params.get('a');
+            const bParam = params.get('restaurant2') || params.get('b');
 
             if (aParam) {
-                const rest = restaurants.find(r => r.name.toLowerCase() === aParam.toLowerCase());
-                if (rest) inputA.value = rest.name;
+                const matchedName = dbRestaurantNames.find(name => name.toLowerCase() === aParam.toLowerCase().trim());
+                if (matchedName) inputA.value = matchedName;
             }
             if (bParam) {
-                const rest = restaurants.find(r => r.name.toLowerCase() === bParam.toLowerCase());
-                if (rest) inputB.value = rest.name;
+                const matchedName = dbRestaurantNames.find(name => name.toLowerCase() === bParam.toLowerCase().trim());
+                if (matchedName) inputB.value = matchedName;
             }
 
-            compare();
+            if (inputA.value && inputB.value) {
+                compare();
+            }
         });
 
         // Click event on Compare Button
@@ -566,5 +889,179 @@
                 row.querySelector('.text-primary')?.classList.replace('text-primary', 'text-outline');
             });
         });
+
+        // Global Navigation Search Bar Auto-complete and Redirection Script
+        (function() {
+            let dbRestaurants = [];
+            let uniqueAreas = [];
+            let csvLoadingPromise = null;
+
+            function parseCSV(text) {
+                const lines = [];
+                let row = [""];
+                let inQuotes = false;
+
+                for (let i = 0; i < text.length; i++) {
+                    const char = text[i];
+                    const nextChar = text[i + 1];
+
+                    if (char === '"') {
+                        if (inQuotes && nextChar === '"') {
+                            row[row.length - 1] += '"';
+                            i++;
+                        } else {
+                            inQuotes = !inQuotes;
+                        }
+                    } else if (char === ',' && !inQuotes) {
+                        row.push('');
+                    } else if ((char === '\r' || char === '\n') && !inQuotes) {
+                        if (char === '\r' && nextChar === '\n') {
+                            i++;
+                        }
+                        lines.push(row);
+                        row = [''];
+                    } else {
+                        row[row.length - 1] += char;
+                    }
+                }
+                if (row.length > 1 || row[0] !== '') {
+                    lines.push(row);
+                }
+                
+                const headers = lines[0].map(h => h.trim().toLowerCase());
+                const objects = [];
+                for (let i = 1; i < lines.length; i++) {
+                    const line = lines[i];
+                    if (line.length !== headers.length) continue;
+                    const obj = {};
+                    for (let j = 0; j < headers.length; j++) {
+                        obj[headers[j]] = line[j].trim();
+                    }
+                    objects.push(obj);
+                }
+                return objects;
+            }
+
+            async function loadCSVData() {
+                if (dbRestaurants.length > 0) return;
+                if (csvLoadingPromise) return csvLoadingPromise;
+
+                csvLoadingPromise = (async () => {
+                    try {
+                        const response = await fetch('dataset/final_restaurants.csv');
+                        if (response.ok) {
+                            const text = await response.text();
+                            dbRestaurants = parseCSV(text);
+                            const areasSet = new Set();
+                            dbRestaurants.forEach(r => {
+                                if (r["area"]) {
+                                    const areaClean = r["area"].trim();
+                                    if (areaClean) areasSet.add(areaClean);
+                                }
+                            });
+                            uniqueAreas = Array.from(areasSet).sort();
+                        }
+                    } catch (err) {
+                        console.error("Could not load CSV dataset:", err);
+                    }
+                })();
+                return csvLoadingPromise;
+            }
+
+            function setupGlobalNavSearch() {
+                const input = document.getElementById('nav-search-input');
+                const autocomplete = document.getElementById('nav-search-autocomplete');
+
+                if (!input || !autocomplete) return;
+
+                input.addEventListener('focus', async () => {
+                    await loadCSVData();
+                });
+
+                input.addEventListener('input', () => {
+                    const query = input.value.toLowerCase().trim();
+                    autocomplete.innerHTML = '';
+                    if (!query || query.length < 2) {
+                        autocomplete.classList.add('hidden');
+                        return;
+                    }
+
+                    // Match unique areas
+                    const matchingAreas = uniqueAreas.filter(area => area.toLowerCase().includes(query)).slice(0, 3);
+                    
+                    // Match restaurants
+                    const matchingRestaurants = dbRestaurants.filter(r => 
+                        (r["restaurant name"] || "").toLowerCase().includes(query)
+                    ).slice(0, 5);
+
+                    if (matchingAreas.length === 0 && matchingRestaurants.length === 0) {
+                        autocomplete.classList.add('hidden');
+                        return;
+                    }
+
+                    // Render matching areas first
+                    matchingAreas.forEach(area => {
+                        const div = document.createElement('div');
+                        div.className = 'px-4 py-2.5 hover:bg-slate-50 cursor-pointer font-body-sm text-slate-700 border-b border-slate-100 last:border-0 text-left flex items-center gap-2';
+                        div.innerHTML = `<span class="material-symbols-outlined text-slate-400 text-base">location_on</span> <span>${area} <span class="text-xs text-slate-400 font-medium ml-1">(Locality)</span></span>`;
+                        div.addEventListener('mousedown', (e) => {
+                            e.preventDefault();
+                            input.value = area;
+                            autocomplete.classList.add('hidden');
+                            window.location.href = `discover.html?area=${encodeURIComponent(area)}`;
+                        });
+                        autocomplete.appendChild(div);
+                    });
+
+                    // Render matching restaurants
+                    matchingRestaurants.forEach(r => {
+                        const name = r["restaurant name"];
+                        const cuisine = r["cuisines type"] || "";
+                        const type = r["restaurant type"] || "Restaurant";
+                        const rating = parseFloat(r["rate (out of 5)"]) || 0;
+                        const cost = parseInt((r["avg cost (two people)"] || "").replace(/[^\d]/g, "")) || 0;
+                        const city = r["city"] || "";
+                        const area = r["area"] || "";
+
+                        const div = document.createElement('div');
+                        div.className = 'px-4 py-2.5 hover:bg-slate-50 cursor-pointer font-body-sm text-slate-700 border-b border-slate-100 last:border-0 text-left flex items-center gap-2';
+                        div.innerHTML = `<span class="material-symbols-outlined text-slate-400 text-base">restaurant</span> <span>${name} <span class="text-xs text-slate-400 font-medium ml-1">(${type})</span></span>`;
+                        div.addEventListener('mousedown', (e) => {
+                            e.preventDefault();
+                            input.value = name;
+                            autocomplete.classList.add('hidden');
+                            window.location.href = `details.html?name=${encodeURIComponent(name)}&cuisine=${encodeURIComponent(cuisine)}&type=${encodeURIComponent(type)}&rating=${encodeURIComponent(rating)}&cost=${encodeURIComponent(cost)}&city=${encodeURIComponent(city)}&area=${encodeURIComponent(area)}`;
+                        });
+                        autocomplete.appendChild(div);
+                    });
+
+                    autocomplete.classList.remove('hidden');
+                });
+
+                input.addEventListener('blur', () => {
+                    setTimeout(() => autocomplete.classList.add('hidden'), 200);
+                });
+
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        const query = input.value.trim();
+                        autocomplete.classList.add('hidden');
+                        if (!query) return;
+
+                        // Check if it exactly matches any area
+                        const matchedArea = uniqueAreas.find(area => area.toLowerCase() === query.toLowerCase());
+                        if (matchedArea) {
+                            window.location.href = `discover.html?area=${encodeURIComponent(matchedArea)}`;
+                        } else {
+                            window.location.href = `discover.html?q=${encodeURIComponent(query)}`;
+                        }
+                    }
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                setupGlobalNavSearch();
+            });
+        })();
     </script>
 </body></html>
